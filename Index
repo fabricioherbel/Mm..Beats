@@ -1,0 +1,2866 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MM..BEATS | Beats Crudos & Notas de Voz Rap</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Graffiti / Marker / Monospace estilo underground -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Permanent+Marker&family=Rubik+Spray+Paint&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            graffiti: ['"Rubik Spray Paint"', '"Permanent Marker"', 'cursive'],
+            marker: ['"Permanent Marker"', 'cursive'],
+            mono: ['"Space Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            markerGreen: '#39ff14',
+            markerDark: '#16a34a',
+            vinylBlack: '#09090b',
+            comicPaper: '#111113',
+            comicCard: '#18181b',
+            doomGold: '#eab308',
+            fireOrange: '#f97316',
+            bloodRed: '#dc2626',
+            darkBlood: '#7f1d1d',
+            champBlue: '#1e3a8a',
+            champRed: '#dc2626',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Fondo estilo concreto / asfalto sucio Griselda x cómic underground */
+    body {
+      background-color: #09090b;
+      background-image:
+        radial-gradient(rgba(57, 255, 20, 0.06) 1px, transparent 0),
+        radial-gradient(rgba(220, 38, 38, 0.05) 1px, transparent 0);
+      background-size: 22px 22px;
+      background-position: 0 0, 11px 11px;
+      color: #f4f4f5;
+      overflow-x: hidden;
+    }
+
+    /* Superposición de grano analógico / fotocopia VHS */
+    .grimy-grain {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E");
+    }
+
+    /* Contorno brutalista tipo cinta cruda / historieta underground */
+    .comic-box {
+      border: 3px solid #000000;
+      box-shadow: 5px 5px 0px #000000;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .comic-box-green {
+      border: 3px solid #000000;
+      box-shadow: 5px 5px 0px #39ff14;
+    }
+
+    .comic-box-red {
+      border: 3px solid #000000;
+      box-shadow: 5px 5px 0px #dc2626;
+    }
+
+    .comic-btn {
+      border: 2.5px solid #000000;
+      box-shadow: 3px 3px 0px #000000;
+      transition: all 0.12s ease;
+    }
+
+    .comic-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px #000000;
+    }
+
+    .comic-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px #000000;
+    }
+
+    /* Sello clásico Parental Advisory / Raw Tape */
+    .parental-stamp {
+      border: 2px solid #fff;
+      outline: 2px solid #000;
+      background: #000;
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      line-height: 1;
+      letter-spacing: 0.08em;
+    }
+
+    /* Efecto de texto graffiti con borde negro grueso */
+    .graffiti-title {
+      color: #39ff14;
+      text-shadow:
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+         4px  4px 0 #000;
+      letter-spacing: 0.03em;
+    }
+
+    .graffiti-sub {
+      color: #39ff14;
+      text-shadow:
+        -1.5px -1.5px 0 #000,
+         1.5px -1.5px 0 #000,
+        -1.5px  1.5px 0 #000,
+         1.5px  1.5px 0 #000,
+         3px    3px 0 #000;
+    }
+
+    /* Scrollbar custom para listas de raps y chat DM */
+    .raps-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .raps-scroll::-webkit-scrollbar-track {
+      background: #09090b;
+      border-radius: 9999px;
+    }
+    .raps-scroll::-webkit-scrollbar-thumb {
+      background: #39ff14;
+      border: 1.5px solid #000;
+      border-radius: 9999px;
+    }
+
+    /* Animación sutil para el emblema invertido */
+    @keyframes stickerFloat {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .sticker-badge {
+      animation: stickerFloat 5s ease-in-out infinite;
+    }
+
+    /* Barras de ecualizador animadas cuando suena un audio */
+    @keyframes eqBounce {
+      0%, 100% { height: 25%; }
+      50% { height: 95%; }
+    }
+    .eq-bar-1 { animation: eqBounce 0.55s infinite ease-in-out; }
+    .eq-bar-2 { animation: eqBounce 0.40s infinite ease-in-out 0.15s; }
+    .eq-bar-3 { animation: eqBounce 0.65s infinite ease-in-out 0.05s; }
+    .eq-bar-4 { animation: eqBounce 0.48s infinite ease-in-out 0.25s; }
+  </style>
+</head>
+<body class="min-h-screen font-sans antialiased selection:bg-markerGreen selection:text-black relative">
+
+  <!-- TEXTURA ANALÓGICA / GRANO DE FOTOCOPIA EN TODA LA PANTALLA -->
+  <div class="grimy-grain fixed inset-0 pointer-events-none z-50 opacity-[0.07]"></div>
+
+  <!-- BARRA SUPERIOR DE NAVEGACIÓN: FEED, MI PERFIL, MENSAJES (DM) Y ROL -->
+  <nav class="sticky top-0 z-40 bg-vinylBlack/95 backdrop-blur-md border-b-[3px] border-black px-3 sm:px-6 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <!-- Izquierda: Acceso rápido a Feed + Estado de sesión con Fuegos Totales -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button
+          onclick="scrollToTopFeed()"
+          class="comic-btn bg-zinc-900 hover:bg-zinc-800 text-markerGreen font-marker text-sm sm:text-base px-2.5 py-1 rounded-lg cursor-pointer tracking-wider"
+          title="Volver al Feed Principal"
+        >
+          MM..FEED
+        </button>
+
+        <button
+          onclick="openArtistProfileModal(currentUser.aka)"
+          class="flex items-center gap-2 bg-zinc-900/90 hover:bg-zinc-800 border-2 border-black rounded-xl px-2.5 py-1 transition-colors cursor-pointer"
+          title="Abrir Mi Perfil"
+        >
+          <div id="headerMiniAvatar" class="w-6 h-6 rounded-md border border-black overflow-hidden shrink-0"></div>
+          <div class="text-xs font-mono text-left">
+            <span id="headerUserName" class="font-bold text-white">@invitado_mc</span>
+            <span id="headerUserRoleBadge" class="ml-1 px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-doomGold text-black border border-black">
+              Rapper
+            </span>
+          </div>
+          <span id="headerUserFiresBadge" class="font-mono text-xs font-bold text-fireOrange bg-black px-1.5 py-0.5 rounded border border-zinc-800">
+            🔥 0
+          </span>
+        </button>
+      </div>
+
+      <!-- Derecha: Mi Perfil, Mensajes (DM), Cambiar Rol y Subir Beat -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
+        <button
+          onclick="openArtistProfileModal(currentUser.aka)"
+          class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-white font-mono text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-lg flex items-center gap-1.5 cursor-pointer"
+        >
+          <span>🪪</span>
+          <span class="hidden md:inline">Mi Perfil</span>
+        </button>
+
+        <button
+          onclick="openDmModal()"
+          class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-white font-mono text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-lg flex items-center gap-1.5 cursor-pointer relative"
+        >
+          <span>✉️</span>
+          <span class="hidden sm:inline">Mensajes (DM)</span>
+          <span id="dmUnreadBadge" class="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-bloodRed text-white border border-black">
+            2
+          </span>
+        </button>
+
+        <button
+          onclick="openAuthModal()"
+          class="comic-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-mono text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-lg flex items-center gap-1.5 cursor-pointer"
+        >
+          <span>🎭</span>
+          <span class="hidden lg:inline">Cuenta / Rol</span>
+        </button>
+
+        <button
+          onclick="handleUploadBeatClick()"
+          class="comic-btn bg-markerGreen hover:bg-green-300 text-black font-mono text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 cursor-pointer"
+        >
+          <span>🎹</span>
+          <span>+ Beat</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-5 pb-20">
+
+    <!-- =====================================================================
+         1. CABECERA PRINCIPAL: LOGO MM.. [C INVERTIDA] BEATS (IGUAL AL BOCETO)
+         ===================================================================== -->
+    <header class="flex flex-col items-center justify-center mb-6 select-none">
+      <div class="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
+        <!-- Texto izquierdo: MM.. -->
+        <h1 class="font-graffiti text-5xl sm:text-7xl md:text-8xl graffiti-title tracking-tight leading-none">
+          MM..
+        </h1>
+
+        <!-- LOGO SVG INSPIRADO EN EL STICKER DE CHAMPION INVERTIDO DEL BOCETO -->
+        <div class="sticker-badge relative w-16 h-16 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center" title="MM..BEATS Emblem">
+          <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+            <!-- Sticker circular blanco vintage con borde negro -->
+            <circle cx="60" cy="60" r="55" fill="#f8fafc" stroke="#000000" stroke-width="5" />
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 3" />
+
+            <!-- Grupo rotado 180 grados (emblema invertido exactamente como la pegatina del boceto) -->
+            <g transform="rotate(180 60 60)">
+              <!-- C exterior azul marino gruesa estilo varsity/sport -->
+              <path
+                d="M 82 42
+                   C 76 31, 65 26, 53 27
+                   C 35 29, 24 43, 24 60
+                   C 24 77, 35 91, 53 93
+                   C 65 94, 76 89, 82 78
+                   L 68 70
+                   C 64 76, 59 79, 53 78
+                   C 43 77, 38 69, 38 60
+                   C 38 51, 43 43, 53 42
+                   C 59 41, 64 44, 68 50 Z"
+                fill="#1e3a8a"
+                stroke="#000000"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+              <!-- Media luna / barra roja interior característica -->
+              <path
+                d="M 65 49
+                   C 59 44, 49 46, 46 54
+                   C 43 61, 46 71, 55 74
+                   C 60 75, 64 73, 66 70
+                   L 85 70
+                   C 85 66, 85 54, 85 50
+                   L 65 49 Z"
+                fill="#dc2626"
+                stroke="#000000"
+                stroke-width="2.5"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Texto derecho: BEATS -->
+        <span class="font-graffiti text-5xl sm:text-7xl md:text-8xl graffiti-title tracking-tight leading-none">
+          BEATS
+        </span>
+      </div>
+      <p class="mt-2 font-mono text-xs sm:text-sm text-zinc-300 bg-black/90 border-2 border-zinc-800 px-3.5 py-1 rounded-full text-center flex flex-wrap items-center justify-center gap-2">
+        <span class="text-bloodRed font-bold">[RAW TAPE // 187 PROOF]</span>
+        <span>Sube tu beat • Tira tu nota de voz <span class="text-markerGreen font-bold">.m4a</span> desde el celu • Sin mezcla</span>
+      </p>
+    </header>
+
+    <!-- =====================================================================
+         2. RANKINGS SUPERIORES: "TOP PROD" & "TOP RAPS" (ORDENADOS POR 🔥)
+         ===================================================================== -->
+    <section aria-label="Rankings de Productores y Raperos" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 max-w-5xl mx-auto">
+      <!-- Cuadro Izquierdo: TOP PROD -->
+      <div class="comic-box bg-comicCard rounded-2xl p-4 relative overflow-hidden">
+        <div class="flex items-center justify-between border-b-2 border-black pb-2 mb-3">
+          <h2 class="font-marker text-2xl sm:text-3xl graffiti-sub tracking-wide flex items-center gap-2">
+            <span>TOP PROD</span>
+            <span class="text-base bg-markerGreen text-black font-mono font-bold px-2 py-0.5 rounded-md border border-black not-italic">👑</span>
+          </h2>
+          <span class="font-mono text-[11px] text-zinc-400 uppercase">Clic para ver perfil • 🔥</span>
+        </div>
+        <ol id="topProdList" class="space-y-2 font-mono text-sm">
+          <!-- Renderizado dinámico por JS -->
+        </ol>
+      </div>
+
+      <!-- Cuadro Derecho: TOP RAPS -->
+      <div class="comic-box bg-comicCard rounded-2xl p-4 relative overflow-hidden">
+        <div class="flex items-center justify-between border-b-2 border-black pb-2 mb-3">
+          <h2 class="font-marker text-2xl sm:text-3xl graffiti-sub tracking-wide flex items-center gap-2">
+            <span>TOP RAPS</span>
+            <span class="text-base bg-doomGold text-black font-mono font-bold px-2 py-0.5 rounded-md border border-black not-italic">🔥</span>
+          </h2>
+          <span class="font-mono text-[11px] text-zinc-400 uppercase">Fuegos totales (.m4a)</span>
+        </div>
+        <ol id="topRapsList" class="space-y-2 font-mono text-sm">
+          <!-- Renderizado dinámico por JS -->
+        </ol>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. FEED PRINCIPAL "TOP" (FILAS ANCHAS: COVER | BEAT | RAPS/COMMENTS)
+         ===================================================================== -->
+    <section aria-label="Top Beats y Raps" class="mb-8">
+      <!-- Indicador "TOP ↓" a la izquierda tal como dibujaste en el boceto -->
+      <div class="flex items-center gap-3 mb-3 pl-1">
+        <div class="flex items-center gap-1.5">
+          <span class="font-marker text-2xl sm:text-3xl graffiti-sub">TOP</span>
+          <svg class="w-6 h-6 text-markerGreen drop-shadow-[2px_2px_0px_#000]" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />
+          </svg>
+        </div>
+        <div class="h-[3px] flex-1 bg-markerGreen border-y border-black rounded-full"></div>
+        <span class="font-mono text-xs text-zinc-400 hidden sm:inline">Dale play al beat o escucha las tomas de voz a la derecha</span>
+      </div>
+
+      <!-- Contenedor de tarjetas horizontales de TOP BEATS -->
+      <div id="topBeatsFeed" class="space-y-6">
+        <!-- Renderizado dinámico por JS -->
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. SEPARADOR DE FLECHAS VERDES (→ → → → →) DEL BOCETO
+         ===================================================================== -->
+    <div class="my-8 py-2 border-y-[3px] border-black bg-comicPaper/90 rounded-xl flex items-center justify-around px-4 select-none overflow-hidden">
+      <span class="font-marker text-2xl sm:text-3xl text-markerGreen drop-shadow-[2px_2px_0px_#000]">→</span>
+      <span class="font-marker text-2xl sm:text-3xl text-markerGreen drop-shadow-[2px_2px_0px_#000]">→</span>
+      <span class="font-marker text-2xl sm:text-3xl text-markerGreen drop-shadow-[2px_2px_0px_#000]">→</span>
+      <span class="font-marker text-2xl sm:text-3xl text-markerGreen drop-shadow-[2px_2px_0px_#000]">→</span>
+      <span class="font-marker text-2xl sm:text-3xl text-markerGreen drop-shadow-[2px_2px_0px_#000] hidden sm:inline">→</span>
+      <span class="font-marker text-2xl sm:text-3xl text-markerGreen drop-shadow-[2px_2px_0px_#000] hidden md:inline">→</span>
+    </div>
+
+    <!-- =====================================================================
+         5. SECCIÓN INFERIOR "NEW BEATS" (GRILLA DE 2 COLUMNAS DEL BOCETO)
+         ===================================================================== -->
+    <section aria-label="New Beats">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+        <div class="flex items-center gap-3">
+          <h2 class="font-graffiti text-3xl sm:text-4xl graffiti-sub tracking-wide">
+            NEW BEATS
+          </h2>
+          <span class="font-mono text-xs bg-markerGreen text-black font-bold px-2.5 py-0.5 rounded-md border-2 border-black">
+            RECIÉN SALIDOS
+          </span>
+        </div>
+        <p class="font-mono text-xs text-zinc-400">
+          Sé el primero en tirar un freestyle en <span class="text-markerGreen font-bold">.m4a</span> sobre los beats nuevos
+        </p>
+      </div>
+
+      <!-- Grilla de 2 columnas igual que en la parte inferior del dibujo -->
+      <div id="newBeatsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        <!-- Renderizado dinámico por JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       REPRODUCTOR FLOTANTE INFERIOR (PERSISTENTE AL REPRODUCIR CUALQUIER PISTA)
+       ===================================================================== -->
+  <div id="stickyPlayer" class="fixed bottom-0 inset-x-0 z-40 bg-zinc-950/95 backdrop-blur-md border-t-[3px] border-markerGreen px-3 sm:px-6 py-2.5 hidden">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <button id="stickyPlayPauseBtn" onclick="toggleCurrentAudio()" class="comic-btn w-10 h-10 rounded-xl bg-markerGreen text-black flex items-center justify-center font-bold shrink-0 cursor-pointer">
+          ⏸
+        </button>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <span id="stickyBadgeType" class="text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-doomGold text-black border border-black">BEAT</span>
+            <p id="stickyTrackTitle" class="font-bold text-sm text-white truncate">Título de pista</p>
+          </div>
+          <p id="stickyTrackSub" class="font-mono text-xs text-zinc-400 truncate">@artista</p>
+        </div>
+      </div>
+
+      <!-- Barra de progreso global -->
+      <div class="hidden sm:flex items-center gap-3 flex-1 max-w-md">
+        <span id="stickyCurrentTime" class="font-mono text-xs text-zinc-400 w-10 text-right">0:00</span>
+        <div onclick="seekGlobalAudio(event)" class="flex-1 h-3 bg-zinc-800 rounded-full border-2 border-black overflow-hidden cursor-pointer relative">
+          <div id="stickyProgressBar" class="h-full bg-markerGreen w-0 transition-all duration-100"></div>
+        </div>
+        <span id="stickyDuration" class="font-mono text-xs text-zinc-400 w-10">0:30</span>
+      </div>
+
+      <button onclick="stopAllAudio()" class="comic-btn bg-zinc-800 hover:bg-red-600 text-white font-mono text-xs px-2.5 py-1.5 rounded-lg cursor-pointer shrink-0">
+        ✕ Parar
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 1: REGISTRO / SELECCIÓN DE ROL (BEATMAKER vs RAPPER)
+       ===================================================================== -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="comic-box-green bg-comicCard rounded-2xl max-w-md w-full p-5 sm:p-6 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('authModal')" class="comic-btn absolute top-4 right-4 w-8 h-8 rounded-lg bg-zinc-800 text-white font-bold cursor-pointer">✕</button>
+
+      <div class="inline-block parental-stamp text-[9px] px-2 py-0.5 mb-2">RAW CREDENTIALS // MM..BEATS</div>
+      <h3 class="font-graffiti text-3xl graffiti-sub mb-1">PERFIL Y ROL</h3>
+      <p class="font-mono text-xs text-zinc-300 mb-4">
+        La web es idéntica para todos, pero tu rol define qué tipo de archivos podés subir.
+      </p>
+
+      <form onsubmit="submitRegistration(event)" class="space-y-3.5">
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-markerGreen mb-1">
+            Tu AKA / Nombre Artístico *
+          </label>
+          <input
+            id="regUsernameInput"
+            type="text"
+            required
+            maxlength="24"
+            placeholder="Ej: Westside_Sur, Daringer_BA..."
+            class="w-full bg-zinc-950 border-2 border-black focus:border-markerGreen rounded-xl px-3.5 py-2 text-white font-mono text-sm outline-none"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="block font-mono text-[11px] font-bold uppercase text-zinc-400 mb-1">
+              Ciudad / Barrio
+            </label>
+            <input
+              id="regCityInput"
+              type="text"
+              maxlength="24"
+              placeholder="Ej: Buffalo / Zona Sur"
+              class="w-full bg-zinc-950 border-2 border-black focus:border-markerGreen rounded-xl px-3 py-1.5 text-white font-mono text-xs outline-none"
+            />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] font-bold uppercase text-zinc-400 mb-1">
+              Sello / Crew
+            </label>
+            <input
+              id="regCrewInput"
+              type="text"
+              maxlength="24"
+              placeholder="Ej: Grimy Tape Dept."
+              class="w-full bg-zinc-950 border-2 border-black focus:border-markerGreen rounded-xl px-3 py-1.5 text-white font-mono text-xs outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-[11px] font-bold uppercase text-zinc-400 mb-1">
+            Bio Cruda (aparece en tu dossier)
+          </label>
+          <input
+            id="regBioInput"
+            type="text"
+            maxlength="90"
+            placeholder="Ej: Loops sucios de vinilo y barras grabadas en una toma..."
+            class="w-full bg-zinc-950 border-2 border-black focus:border-markerGreen rounded-xl px-3 py-1.5 text-white font-mono text-xs outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-markerGreen mb-2">
+            ¿Cuál es tu rol en el estudio?
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Opción Beatmaker -->
+            <label class="cursor-pointer">
+              <input type="radio" name="userRole" value="Beatmaker" class="peer sr-only" />
+              <div class="comic-btn peer-checked:bg-markerGreen peer-checked:text-black bg-zinc-900 text-zinc-200 rounded-xl p-3 text-center transition-all">
+                <div class="text-2xl mb-1">🎛️</div>
+                <div class="font-marker text-lg tracking-wide">BEATMAKER</div>
+                <div class="font-mono text-[11px] opacity-85 mt-1">
+                  Sube beats (.mp3, .wav)
+                </div>
+              </div>
+            </label>
+
+            <!-- Opción Rapper -->
+            <label class="cursor-pointer">
+              <input type="radio" name="userRole" value="Rapper" class="peer sr-only" checked />
+              <div class="comic-btn peer-checked:bg-markerGreen peer-checked:text-black bg-zinc-900 text-zinc-200 rounded-xl p-3 text-center transition-all">
+                <div class="text-2xl mb-1">🎤</div>
+                <div class="font-marker text-lg tracking-wide">RAPPER</div>
+                <div class="font-mono text-[11px] opacity-85 mt-1">
+                  Sube notas (.m4a) o mic
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="comic-btn w-full bg-markerGreen hover:bg-green-300 text-black font-marker text-xl py-2.5 rounded-xl cursor-pointer">
+          GUARDAR CREDENCIALES
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: SUBIR BEAT (SOLO BEATMAKERS)
+       ===================================================================== -->
+  <div id="uploadBeatModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="comic-box-green bg-comicCard rounded-2xl max-w-lg w-full p-5 sm:p-6 relative">
+      <button onclick="closeModal('uploadBeatModal')" class="comic-btn absolute top-4 right-4 w-8 h-8 rounded-lg bg-zinc-800 text-white font-bold cursor-pointer">✕</button>
+
+      <div class="flex items-center gap-2 mb-1">
+        <span class="px-2 py-0.5 rounded bg-markerGreen text-black font-mono text-xs font-bold border border-black">BEATMAKER</span>
+        <h3 class="font-graffiti text-2xl sm:text-3xl graffiti-sub">SUBIR INSTRUMENTAL</h3>
+      </div>
+      <p class="font-mono text-xs text-zinc-300 mb-4">
+        Publicá tu beat para que los MCs tiren sus notas de voz encima.
+      </p>
+
+      <form onsubmit="submitNewBeat(event)" class="space-y-3.5">
+        <div>
+          <label class="block font-mono text-xs font-bold text-zinc-300 mb-1">Nombre del Beat *</label>
+          <input
+            id="beatTitleInput"
+            type="text"
+            required
+            maxlength="36"
+            placeholder="Ej: Polvo de Vinilo, Subte B..."
+            class="w-full bg-zinc-900 border-2 border-black focus:border-markerGreen rounded-xl px-3.5 py-2 text-white font-mono text-sm outline-none"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono text-xs font-bold text-zinc-300 mb-1">BPM *</label>
+            <input
+              id="beatBpmInput"
+              type="number"
+              min="60"
+              max="180"
+              value="90"
+              required
+              class="w-full bg-zinc-900 border-2 border-black focus:border-markerGreen rounded-xl px-3.5 py-2 text-white font-mono text-sm outline-none"
+            />
+          </div>
+          <div>
+            <label class="block font-mono text-xs font-bold text-zinc-300 mb-1">Estilo de Carátula</label>
+            <select
+              id="beatCoverThemeInput"
+              class="w-full bg-zinc-900 border-2 border-black focus:border-markerGreen rounded-xl px-3 py-2 text-white font-mono text-sm outline-none"
+            >
+              <option value="mask">🎭 Máscara Metal</option>
+              <option value="cassette">📼 Cassettera Cruda</option>
+              <option value="spray">🎨 Lata Graffiti</option>
+              <option value="vinyl">💿 Vinilo Roto</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs font-bold text-markerGreen mb-1">
+            Archivo del Beat (.mp3, .wav, .ogg, .flac) *
+          </label>
+          <input
+            id="beatFileInput"
+            type="file"
+            accept=".mp3,.wav,.ogg,.flac,audio/mpeg,audio/wav,audio/ogg"
+            required
+            class="w-full bg-zinc-900 border-2 border-dashed border-markerGreen/70 rounded-xl p-2.5 text-xs font-mono text-zinc-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-2 file:border-black file:font-bold file:bg-markerGreen file:text-black cursor-pointer"
+          />
+        </div>
+
+        <button type="submit" class="comic-btn w-full bg-markerGreen hover:bg-green-300 text-black font-marker text-xl py-2.5 rounded-xl cursor-pointer mt-2">
+          PUBLICAR BEAT EN NEW BEATS
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: SUBIR RAP / NOTA DE VOZ .M4A O GRABAR MIC (SOLO RAPPERS)
+       ===================================================================== -->
+  <div id="uploadRapModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="comic-box-green bg-comicCard rounded-2xl max-w-lg w-full p-5 sm:p-6 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="closeRapModal()" class="comic-btn absolute top-4 right-4 w-8 h-8 rounded-lg bg-zinc-800 text-white font-bold cursor-pointer">✕</button>
+
+      <div class="flex items-center gap-2 mb-1">
+        <span class="px-2 py-0.5 rounded bg-doomGold text-black font-mono text-xs font-bold border border-black">RAPPER</span>
+        <h3 class="font-graffiti text-2xl sm:text-3xl graffiti-sub">TIRAR BARRAS</h3>
+      </div>
+      <p class="font-mono text-xs text-zinc-300 mb-3">
+        Sobre el beat: <span id="rapTargetBeatName" class="text-markerGreen font-bold">Nombre del Beat</span>
+      </p>
+
+      <!-- Selector de modo: Subir archivo .m4a del celu vs Grabar directo con Micrófono -->
+      <div class="grid grid-cols-2 gap-2 mb-4 bg-zinc-950 p-1.5 rounded-xl border-2 border-black">
+        <button
+          type="button"
+          id="tabFileModeBtn"
+          onclick="switchRapInputMode('file')"
+          class="font-mono text-xs font-bold py-2 px-2 rounded-lg bg-markerGreen text-black border border-black cursor-pointer"
+        >
+          📱 Subir Nota de Voz (.m4a)
+        </button>
+        <button
+          type="button"
+          id="tabMicModeBtn"
+          onclick="switchRapInputMode('mic')"
+          class="font-mono text-xs font-bold py-2 px-2 rounded-lg text-zinc-300 hover:text-white cursor-pointer"
+        >
+          🎙️ Grabar Mic en Vivo
+        </button>
+      </div>
+
+      <form onsubmit="submitNewRap(event)" class="space-y-3.5">
+        <!-- MODO 1: ARCHIVO DEL CELU (.m4a, .aac, .mp3, .wav, .ogg, .webm) -->
+        <div id="rapFilePanel">
+          <label class="block font-mono text-xs font-bold text-markerGreen mb-1">
+            Elegí tu grabación del teléfono (.m4a, .aac, .mp3, .wav)
+          </label>
+          <input
+            id="rapFileInput"
+            type="file"
+            accept=".m4a,.aac,.mp3,.wav,.ogg,.webm,audio/mp4,audio/x-m4a,audio/*"
+            class="w-full bg-zinc-900 border-2 border-dashed border-markerGreen/70 rounded-xl p-2.5 text-xs font-mono text-zinc-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-2 file:border-black file:font-bold file:bg-doomGold file:text-black cursor-pointer"
+          />
+          <p class="font-mono text-[11px] text-zinc-400 mt-1.5">
+            💡 Tip: En iPhone (Notas de Voz) o Android (Grabadora), dale a "Compartir / Guardar en archivos" y subí el <span class="text-white font-bold">.m4a</span> directo acá.
+          </p>
+        </div>
+
+        <!-- MODO 2: GRABADORA DE MICRÓFONO INTEGRADA -->
+        <div id="rapMicPanel" class="hidden bg-zinc-900 border-2 border-black rounded-xl p-4 text-center space-y-3">
+          <p class="font-mono text-xs text-zinc-300">
+            Grabá tu toma espontánea ahora mismo. Podés darle play al beat de fondo mientras grabás:
+          </p>
+
+          <div class="flex items-center justify-center gap-3">
+            <button
+              type="button"
+              id="btnToggleBeatWhileRec"
+              onclick="toggleTargetBeatPreview()"
+              class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-markerGreen font-mono text-xs font-bold px-3 py-2 rounded-lg cursor-pointer"
+            >
+              🔊 Escuchar Beat de fondo
+            </button>
+
+            <button
+              type="button"
+              id="btnRecordMic"
+              onclick="toggleMicRecording()"
+              class="comic-btn bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1.5 cursor-pointer"
+            >
+              <span id="recDot" class="w-2.5 h-2.5 rounded-full bg-white"></span>
+              <span id="recBtnLabel">Grabar Toma</span>
+            </button>
+          </div>
+
+          <div id="recTimerDisplay" class="font-mono text-lg font-bold text-markerGreen">00:00</div>
+          <audio id="micPreviewAudio" controls class="w-full h-9 hidden"></audio>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs font-bold text-zinc-300 mb-1">
+            Comentario o contexto de la toma (opcional)
+          </label>
+          <input
+            id="rapCommentInput"
+            type="text"
+            maxlength="60"
+            placeholder="Ej: Primera toma en el bondi, letra recién escrita..."
+            class="w-full bg-zinc-900 border-2 border-black focus:border-markerGreen rounded-xl px-3.5 py-2 text-white font-mono text-sm outline-none"
+          />
+        </div>
+
+        <button type="submit" class="comic-btn w-full bg-markerGreen hover:bg-green-300 text-black font-marker text-xl py-2.5 rounded-xl cursor-pointer">
+          SUBIR VERSIÓN AL BEAT
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 4: DETALLE DE BEAT (PARA ABRIR CUALQUIER "NEW BEAT" Y VER SUS RAPS)
+       ===================================================================== -->
+  <div id="beatDetailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="comic-box-green bg-comicCard rounded-2xl max-w-2xl w-full p-5 sm:p-6 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('beatDetailModal')" class="comic-btn absolute top-4 right-4 w-8 h-8 rounded-lg bg-zinc-800 text-white font-bold cursor-pointer">✕</button>
+      <div id="beatDetailContent">
+        <!-- Renderizado dinámico por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 5: AVISO DE CONTRASTE DE ROL (SIN USAR ALERT())
+       ===================================================================== -->
+  <div id="roleNoticeModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="comic-box bg-comicCard border-doomGold rounded-2xl max-w-md w-full p-5 sm:p-6 text-center relative">
+      <div class="text-4xl mb-2">🚧</div>
+      <h3 id="roleNoticeTitle" class="font-marker text-2xl text-doomGold mb-2">RESTRICCIÓN DE ROL</h3>
+      <p id="roleNoticeBody" class="font-mono text-xs sm:text-sm text-zinc-200 mb-5 leading-relaxed">
+        Mensaje explicativo del rol.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-2.5 justify-center">
+        <button
+          id="roleQuickSwitchBtn"
+          onclick=""
+          class="comic-btn bg-markerGreen hover:bg-green-300 text-black font-mono text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl cursor-pointer"
+        >
+          Cambiar de Rol ahora
+        </button>
+        <button
+          onclick="closeModal('roleNoticeModal')"
+          class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-white font-mono text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl cursor-pointer"
+        >
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 6: PERFIL COMPLETO DE ARTISTA (BEATMAKER / RAPPER DOSSIER)
+       ===================================================================== -->
+  <div id="artistProfileModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+    <div class="comic-box-red bg-comicCard rounded-2xl max-w-3xl w-full p-4 sm:p-6 relative max-h-[92vh] overflow-y-auto raps-scroll">
+      <button onclick="closeModal('artistProfileModal')" class="comic-btn absolute top-4 right-4 w-8 h-8 rounded-lg bg-zinc-800 hover:bg-bloodRed text-white font-bold cursor-pointer z-10">✕</button>
+      <div id="artistProfileContent">
+        <!-- Renderizado dinámico por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 7: MENSAJERÍA INTERNA (DM ENTRE BEATMAKERS Y RAPPERS)
+       ===================================================================== -->
+  <div id="dmModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-2 sm:p-4">
+    <div class="comic-box-green bg-comicCard rounded-2xl max-w-4xl w-full h-[85vh] max-h-[680px] flex flex-col overflow-hidden relative">
+      <!-- Cabecera DM -->
+      <div class="bg-zinc-950 border-b-[3px] border-black px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="parental-stamp text-[10px] px-2 py-0.5">DIRECT TAPE LINE</span>
+          <h3 class="font-graffiti text-xl sm:text-2xl graffiti-sub">MENSAJES INTERNOS (DM)</h3>
+        </div>
+        <button onclick="closeModal('dmModal')" class="comic-btn w-8 h-8 rounded-lg bg-zinc-800 hover:bg-bloodRed text-white font-bold cursor-pointer">✕</button>
+      </div>
+
+      <!-- Cuerpo Split-Pane: Lista de conversaciones (izq) + Chat activo (der) -->
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-12 min-h-0 overflow-hidden">
+        <!-- Columna Izquierda: Bandeja y Selector de Artista -->
+        <div class="md:col-span-4 bg-zinc-950/95 border-b-[3px] md:border-b-0 md:border-r-[3px] border-black flex flex-col min-h-0 max-h-44 md:max-h-none">
+          <div class="p-2.5 border-b border-zinc-800">
+            <label class="block font-mono text-[10px] text-zinc-400 uppercase mb-1">Iniciar chat con artista:</label>
+            <select
+              id="dmNewChatSelect"
+              onchange="if(this.value){ openDmThread(this.value); this.value=''; }"
+              class="w-full bg-zinc-900 border-2 border-black rounded-lg px-2.5 py-1.5 text-xs font-mono text-markerGreen outline-none cursor-pointer"
+            >
+              <option value="">+ Elegir Beatmaker o Rapper...</option>
+            </select>
+          </div>
+
+          <div id="dmThreadsList" class="flex-1 overflow-y-auto raps-scroll p-2 space-y-1.5">
+            <!-- Renderizado dinámico por JS -->
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Hilo de Mensajes Activo -->
+        <div class="md:col-span-8 flex flex-col min-h-0 bg-comicPaper">
+          <!-- Header del interlocutor activo -->
+          <div id="dmActiveHeader" class="bg-zinc-900/90 border-b-2 border-black px-4 py-2.5 flex items-center justify-between gap-2">
+            <!-- Renderizado dinámico -->
+          </div>
+
+          <!-- Mensajes -->
+          <div id="dmMessagesList" class="flex-1 overflow-y-auto raps-scroll p-3 sm:p-4 space-y-3">
+            <!-- Renderizado dinámico -->
+          </div>
+
+          <!-- Accesos rápidos de estudio -->
+          <div class="px-3 pt-2 pb-1 bg-zinc-950/80 border-t border-zinc-800 flex items-center gap-1.5 overflow-x-auto">
+            <span class="font-mono text-[10px] text-zinc-500 shrink-0">Rápido:</span>
+            <button type="button" onclick="insertQuickDm('🎛️ Pasame los stems de ese beat')" class="font-mono text-[11px] bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-black px-2 py-0.5 rounded shrink-0 cursor-pointer">
+              Pasame los stems
+            </button>
+            <button type="button" onclick="insertQuickDm('📱 Grabé un .m4a crudo en tu beat, escuchalo')" class="font-mono text-[11px] bg-zinc-900 hover:bg-zinc-800 text-markerGreen border border-black px-2 py-0.5 rounded shrink-0 cursor-pointer">
+              Grabé un .m4a en tu beat
+            </button>
+            <button type="button" onclick="insertQuickDm('📼 ¿Armamos un EP / tape colaborativo?')" class="font-mono text-[11px] bg-zinc-900 hover:bg-zinc-800 text-doomGold border border-black px-2 py-0.5 rounded shrink-0 cursor-pointer">
+              ¿Armamos un tape?
+            </button>
+          </div>
+
+          <!-- Formulario de envío de mensaje + Adjuntar referencia de Beat -->
+          <form onsubmit="handleSendDmSubmit(event)" class="p-2.5 sm:p-3 bg-zinc-950 border-t-2 border-black space-y-2">
+            <div class="flex items-center gap-2">
+              <select
+                id="dmAttachBeatSelect"
+                class="bg-zinc-900 border border-zinc-700 rounded-lg px-2 py-1 text-[11px] font-mono text-zinc-300 max-w-[180px] sm:max-w-[230px] outline-none"
+                title="Adjuntar referencia a un beat"
+              >
+                <option value="">📎 Adjuntar Beat (opcional)</option>
+              </select>
+              <span class="font-mono text-[10px] text-zinc-500 truncate">Canal directo cifrado entre artistas</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input
+                id="dmMessageInput"
+                type="text"
+                maxlength="240"
+                placeholder="Escribí tu mensaje para colaborar..."
+                class="flex-1 bg-zinc-900 border-2 border-black focus:border-markerGreen rounded-xl px-3 py-2 text-xs sm:text-sm font-mono text-white outline-none"
+              />
+              <button
+                type="submit"
+                class="comic-btn bg-markerGreen hover:bg-green-300 text-black font-marker text-base sm:text-lg px-4 py-1.5 rounded-xl cursor-pointer shrink-0"
+              >
+                ENVIAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST DE NOTIFICACIÓN RÁPIDA -->
+  <div id="toastNotification" class="fixed bottom-16 right-4 z-50 comic-box bg-markerGreen text-black font-mono text-xs sm:text-sm font-bold px-4 py-3 rounded-xl hidden items-center gap-2 max-w-sm">
+    <span>🔥</span>
+    <span id="toastMessage">¡Listo!</span>
+  </div>
+
+  <!-- =====================================================================
+       LÓGICA DE LA APLICACIÓN + PERFILES + DM + MOTOR DE AUDIO
+       ===================================================================== -->
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. ESTADO GLOBAL DE USUARIOS, PERFILES, BEATS Y MENSAJES INTERNOS
+    // -----------------------------------------------------------------------
+    let currentUser = {
+      aka: '@invitado_mc',
+      role: 'Rapper', // 'Beatmaker' | 'Rapper'
+      city: 'Zona Sur / Subte',
+      crew: 'Raw Tape Mob',
+      bio: 'Tirando maquetas crudas en .m4a directo desde el celu sin filtrar.',
+      avatarSeed: 0
+    };
+
+    // Directorio completo de Beatmakers y Rappers de MM..BEATS
+    let artistsDirectory = {
+      '@invitado_mc': {
+        aka: '@invitado_mc',
+        role: 'Rapper',
+        city: 'Zona Sur / Subte',
+        crew: 'Raw Tape Mob',
+        bio: 'Tirando maquetas crudas en .m4a directo desde el celu sin filtrar.',
+        avatarSeed: 0
+      },
+      '@MF_Killa': {
+        aka: '@MF_Killa',
+        role: 'Beatmaker',
+        city: 'Buffalo / Villa Crespo',
+        crew: 'Metal Fingers Dept.',
+        bio: 'Samples polvorientos de vinilo, MPC2000XL y bombos sin cuantizar. 187 Proof.',
+        avatarSeed: 1
+      },
+      '@DoomsdayJr': {
+        aka: '@DoomsdayJr',
+        role: 'Beatmaker',
+        city: 'La Plata / Brooklyn',
+        crew: 'GXFR Analog Lab',
+        bio: 'Cintas VHS saturadas, pianos oscuros y loops de terror callejero.',
+        avatarSeed: 2
+      },
+      '@MadPibe': {
+        aka: '@MadPibe',
+        role: 'Beatmaker',
+        city: 'Avellaneda',
+        crew: 'Cassettera Rota',
+        bio: 'Loops crudos grabados directo a cassette TDK de 90 minutos.',
+        avatarSeed: 3
+      },
+      '@SoulSample': {
+        aka: '@SoulSample',
+        role: 'Beatmaker',
+        city: 'Rosario',
+        crew: 'Alchemist Soul Club',
+        bio: 'Cortes de soul de los 70s con batería sucia y bajo analógico.',
+        avatarSeed: 4
+      },
+      '@el_flaco': {
+        aka: '@el_flaco',
+        role: 'Rapper',
+        city: 'Constitución',
+        crew: 'Primera Toma',
+        bio: 'No piso un estudio hace años, todo sale por la grabadora de voz del teléfono.',
+        avatarSeed: 5
+      },
+      '@nina_bars': {
+        aka: '@nina_bars',
+        role: 'Rapper',
+        city: 'Morón / Oeste',
+        crew: 'Griselda Sur',
+        bio: 'Métricas afiladas y crónicas nocturnas en una sola toma sin cortes.',
+        avatarSeed: 6
+      },
+      '@kase_sur': {
+        aka: '@kase_sur',
+        role: 'Rapper',
+        city: 'Lomas',
+        crew: 'Bondi 60',
+        bio: 'Freestyle espontáneo con auriculares de cable y cuaderno rayado.',
+        avatarSeed: 7
+      },
+      '@tinta_negra': {
+        aka: '@tinta_negra',
+        role: 'Rapper',
+        city: 'Boedo',
+        crew: 'Tinta & Asfalto',
+        bio: 'Barras pesadas sobre boom-bap sin batería o loops lentos a 85 BPM.',
+        avatarSeed: 8
+      },
+      '@verso_libre': {
+        aka: '@verso_libre',
+        role: 'Rapper',
+        city: 'Córdoba',
+        crew: 'Callejón',
+        bio: 'Notas de voz a las 4 de la mañana.',
+        avatarSeed: 9
+      }
+    };
+
+    // Datos de Beats (incluyen `likes` / fuegos para el Beatmaker) y Raps (.m4a)
+    let beatsData = [
+      {
+        id: 'beat-1',
+        title: 'Latas & Vinilo (187 Raw)',
+        producer: '@MF_Killa',
+        bpm: 90,
+        musicalKey: 'Cm',
+        formatTag: '.WAV 24BIT',
+        coverTheme: 'mask',
+        isTop: true,
+        plays: 1420,
+        likes: 118,
+        likedByMe: false,
+        audioUrl: null,
+        synthSeed: 1,
+        raps: [
+          {
+            id: 'rap-101',
+            rapper: '@el_flaco',
+            fileName: 'nota_voz_014.m4a',
+            format: '.M4A',
+            comment: 'Grabado recién bajando del subte, primera toma cruda',
+            likes: 84,
+            likedByMe: false,
+            durationSec: 24,
+            audioUrl: null,
+            synthSeed: 11
+          },
+          {
+            id: 'rap-102',
+            rapper: '@nina_bars',
+            fileName: 'toma_cruda_celu.m4a',
+            format: '.M4A',
+            comment: 'Unas barras a las 3am antes de dormir',
+            likes: 67,
+            likedByMe: false,
+            durationSec: 28,
+            audioUrl: null,
+            synthSeed: 12
+          },
+          {
+            id: 'rap-103',
+            rapper: '@kase_sur',
+            fileName: 'impro_bondi_60.m4a',
+            format: '.M4A',
+            comment: 'Freestyle directo al micrófono del teléfono',
+            likes: 49,
+            likedByMe: false,
+            durationSec: 20,
+            audioUrl: null,
+            synthSeed: 13
+          }
+        ]
+      },
+      {
+        id: 'beat-2',
+        title: 'Subte Línea D (94 Grimy)',
+        producer: '@DoomsdayJr',
+        bpm: 86,
+        musicalKey: 'F#m',
+        formatTag: '.WAV TAPE',
+        coverTheme: 'cassette',
+        isTop: true,
+        plays: 1185,
+        likes: 96,
+        likedByMe: false,
+        audioUrl: null,
+        synthSeed: 2,
+        raps: [
+          {
+            id: 'rap-201',
+            rapper: '@nina_bars',
+            fileName: 'freestyle_plaza.m4a',
+            format: '.M4A',
+            comment: 'Probando métricas sobre este bombo sucio',
+            likes: 92,
+            likedByMe: false,
+            durationSec: 26,
+            audioUrl: null,
+            synthSeed: 21
+          },
+          {
+            id: 'rap-202',
+            rapper: '@tinta_negra',
+            fileName: 'audio_whatsapp_rap.m4a',
+            format: '.M4A',
+            comment: 'Lo mandé al grupo y me dijeron que lo suba acá',
+            likes: 53,
+            likedByMe: false,
+            durationSec: 22,
+            audioUrl: null,
+            synthSeed: 22
+          }
+        ]
+      },
+      {
+        id: 'beat-3',
+        title: 'Cassettera Rota',
+        producer: '@MadPibe',
+        bpm: 94,
+        musicalKey: 'Am',
+        formatTag: '.MP3 320',
+        coverTheme: 'spray',
+        isTop: false,
+        plays: 410,
+        likes: 45,
+        likedByMe: false,
+        audioUrl: null,
+        synthSeed: 3,
+        raps: [
+          {
+            id: 'rap-301',
+            rapper: '@el_flaco',
+            fileName: 'esquina_02.m4a',
+            format: '.M4A',
+            comment: 'One take en la vereda',
+            likes: 31,
+            likedByMe: false,
+            durationSec: 19,
+            audioUrl: null,
+            synthSeed: 31
+          }
+        ]
+      },
+      {
+        id: 'beat-4',
+        title: 'Pizza Fría & MPC',
+        producer: '@MF_Killa',
+        bpm: 88,
+        musicalKey: 'Dm',
+        formatTag: '.WAV 24BIT',
+        coverTheme: 'vinyl',
+        isTop: false,
+        plays: 325,
+        likes: 39,
+        likedByMe: false,
+        audioUrl: null,
+        synthSeed: 4,
+        raps: []
+      },
+      {
+        id: 'beat-5',
+        title: 'Aerosol Verde',
+        producer: '@SoulSample',
+        bpm: 92,
+        musicalKey: 'Gm',
+        formatTag: '.MP3 RAW',
+        coverTheme: 'spray',
+        isTop: false,
+        plays: 278,
+        likes: 28,
+        likedByMe: false,
+        audioUrl: null,
+        synthSeed: 5,
+        raps: [
+          {
+            id: 'rap-501',
+            rapper: '@verso_libre',
+            fileName: 'grabacion_cuarto.m4a',
+            format: '.M4A',
+            comment: 'Maqueta rápida con auriculares de cable',
+            likes: 18,
+            likedByMe: false,
+            durationSec: 21,
+            audioUrl: null,
+            synthSeed: 51
+          }
+        ]
+      },
+      {
+        id: 'beat-6',
+        title: 'Nocturno en Avellaneda',
+        producer: '@MadPibe',
+        bpm: 84,
+        musicalKey: 'Em',
+        formatTag: '.WAV TAPE',
+        coverTheme: 'mask',
+        isTop: false,
+        plays: 190,
+        likes: 21,
+        likedByMe: false,
+        audioUrl: null,
+        synthSeed: 6,
+        raps: []
+      }
+    ];
+
+    // Conversaciones internas (DM) precargadas
+    let dmConversations = [
+      {
+        partnerAka: '@MF_Killa',
+        unread: true,
+        autoReplied: false,
+        messages: [
+          {
+            sender: '@MF_Killa',
+            text: 'Ey loco, escuché tus barras en el feed. Si grabás una toma en .m4a sobre "Latas & Vinilo" te paso los stems limpios.',
+            time: '18:42',
+            beatRefId: 'beat-1'
+          }
+        ]
+      },
+      {
+        partnerAka: '@nina_bars',
+        unread: true,
+        autoReplied: false,
+        messages: [
+          {
+            sender: '@nina_bars',
+            text: '¿Estás para armar un back-to-back sobre el beat de @DoomsdayJr? Yo ya tiré una nota de voz de 16 compases.',
+            time: '17:15',
+            beatRefId: 'beat-2'
+          }
+        ]
+      }
+    ];
+    let activeDmPartner = '@MF_Killa';
+
+    // Estado del reproductor global y grabación de micrófono
+    let activePlayback = {
+      type: null, // 'beat' | 'rap'
+      beatId: null,
+      rapId: null,
+      isPlaying: false,
+      progress: 0,
+      elapsedSec: 0,
+      durationSec: 32
+    };
+
+    const htmlAudio = new Audio();
+    let progressTimer = null;
+    let audioCtx = null;
+    let synthInterval = null;
+
+    let currentTargetBeatId = null;
+    let rapInputMode = 'file';
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let recordedBlobUrl = null;
+    let recInterval = null;
+    let recSeconds = 0;
+
+    // -----------------------------------------------------------------------
+    // MOTOR DE AUDIO (ARCHIVOS REALES + SINTETIZADOR BOOM-BAP WEB AUDIO)
+    // -----------------------------------------------------------------------
+    function stopSynthesizer() {
+      if (synthInterval) {
+        clearInterval(synthInterval);
+        synthInterval = null;
+      }
+    }
+
+    function stopAllAudio() {
+      htmlAudio.pause();
+      htmlAudio.currentTime = 0;
+      stopSynthesizer();
+      if (progressTimer) {
+        clearInterval(progressTimer);
+        progressTimer = null;
+      }
+      activePlayback = {
+        type: null,
+        beatId: null,
+        rapId: null,
+        isPlaying: false,
+        progress: 0,
+        elapsedSec: 0,
+        durationSec: 32
+      };
+      const stickyBar = document.getElementById('stickyPlayer');
+      if (stickyBar) stickyBar.classList.add('hidden');
+      renderAll();
+    }
+
+    function startBoomBapSynth(type, bpm = 90, seed = 1) {
+      stopSynthesizer();
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const stepMs = (60 / (bpm || 90) / 2) * 1000; // Corcheas
+        let step = 0;
+        const rootNotes = [130.81, 146.83, 155.56, 174.61, 196.00]; // Escala menor oscura
+        const baseFreq = rootNotes[(seed || 1) % rootNotes.length];
+
+        const playStep = () => {
+          if (!activePlayback.isPlaying || !audioCtx) return;
+          const now = audioCtx.currentTime;
+          const s = step % 8;
+
+          if (type === 'beat') {
+            // Bombo (Kick) crudo en tiempos 0, 3, 4
+            if (s === 0 || s === 3 || s === 4) {
+              const osc = audioCtx.createOscillator();
+              const gain = audioCtx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(125, now);
+              osc.frequency.exponentialRampToValueAtTime(38, now + 0.14);
+              gain.gain.setValueAtTime(0.32, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+              osc.connect(gain);
+              gain.connect(audioCtx.destination);
+              osc.start(now);
+              osc.stop(now + 0.17);
+            }
+
+            // Caja (Snare) seca en tiempos 2 y 6
+            if (s === 2 || s === 6) {
+              const osc = audioCtx.createOscillator();
+              const gain = audioCtx.createGain();
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(210, now);
+              osc.frequency.exponentialRampToValueAtTime(85, now + 0.11);
+              gain.gain.setValueAtTime(0.22, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+              osc.connect(gain);
+              gain.connect(audioCtx.destination);
+              osc.start(now);
+              osc.stop(now + 0.14);
+            }
+
+            // Sample de teclado / vinilo oscuro en tiempos 0 y 5
+            if (s === 0 || s === 5) {
+              const osc = audioCtx.createOscillator();
+              const gain = audioCtx.createGain();
+              osc.type = 'sawtooth';
+              const ratio = s === 0 ? 1 : 1.189; // Tercera menor
+              osc.frequency.setValueAtTime(baseFreq * ratio, now);
+              gain.gain.setValueAtTime(0.06, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+              osc.connect(gain);
+              gain.connect(audioCtx.destination);
+              osc.start(now);
+              osc.stop(now + 0.36);
+            }
+          } else {
+            // Cadencia vocal / métrica rítmica para vistas previas de raps .m4a sin archivo subido
+            const cadences = [1, 1.12, 1.25, 1, 1.33, 1.18, 1, 0.94];
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime((baseFreq * 1.5) * cadences[s], now);
+            gain.gain.setValueAtTime(0.09, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.15);
+          }
+
+          step++;
+        };
+
+        playStep();
+        synthInterval = setInterval(playStep, stepMs);
+      } catch (e) {
+        // Fallback silencioso si el navegador bloquea AudioContext
+      }
+    }
+
+    function formatTime(sec) {
+      const s = Math.max(0, Math.floor(sec || 0));
+      const mins = Math.floor(s / 60);
+      const rem = s % 60;
+      return `${mins}:${rem < 10 ? '0' : ''}${rem}`;
+    }
+
+    function updateStickyPlayerUI(title, subtitle, badgeLabel) {
+      const bar = document.getElementById('stickyPlayer');
+      bar.classList.remove('hidden');
+      document.getElementById('stickyTrackTitle').textContent = title;
+      document.getElementById('stickyTrackSub').textContent = subtitle;
+      const badge = document.getElementById('stickyBadgeType');
+      badge.textContent = badgeLabel;
+      badge.className = badgeLabel === 'BEAT'
+        ? 'text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-markerGreen text-black border border-black'
+        : 'text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-doomGold text-black border border-black';
+
+      document.getElementById('stickyPlayPauseBtn').textContent = activePlayback.isPlaying ? '⏸' : '▶';
+      document.getElementById('stickyCurrentTime').textContent = formatTime(activePlayback.elapsedSec);
+      document.getElementById('stickyDuration').textContent = formatTime(activePlayback.durationSec);
+      document.getElementById('stickyProgressBar').style.width = `${activePlayback.progress}%`;
+    }
+
+    // Reproducir o pausar un BEAT
+    function playBeat(beatId) {
+      const beat = beatsData.find(b => b.id === beatId);
+      if (!beat) return;
+
+      // Si ya es el beat activo, alternar pausa/play
+      if (activePlayback.type === 'beat' && activePlayback.beatId === beatId) {
+        toggleCurrentAudio();
+        return;
+      }
+
+      stopAllAudio();
+      beat.plays += 1;
+
+      activePlayback = {
+        type: 'beat',
+        beatId: beat.id,
+        rapId: null,
+        isPlaying: true,
+        progress: 0,
+        elapsedSec: 0,
+        durationSec: 32
+      };
+
+      if (beat.audioUrl) {
+        htmlAudio.src = beat.audioUrl;
+        htmlAudio.play().catch(() => {});
+        htmlAudio.onloadedmetadata = () => {
+          if (isFinite(htmlAudio.duration)) {
+            activePlayback.durationSec = htmlAudio.duration;
+          }
+        };
+        htmlAudio.ontimeupdate = () => {
+          if (activePlayback.type === 'beat' && activePlayback.beatId === beat.id) {
+            activePlayback.elapsedSec = htmlAudio.currentTime;
+            activePlayback.durationSec = isFinite(htmlAudio.duration) ? htmlAudio.duration : 30;
+            activePlayback.progress = (activePlayback.elapsedSec / activePlayback.durationSec) * 100;
+            updateProgressDOM();
+          }
+        };
+        htmlAudio.onended = () => stopAllAudio();
+      } else {
+        startBoomBapSynth('beat', beat.bpm, beat.synthSeed);
+        startSyntheticProgressTimer();
+      }
+
+      updateStickyPlayerUI(`${beat.title} (${beat.bpm} BPM)`, `Prod. ${beat.producer}`, 'BEAT');
+      renderAll();
+    }
+
+    // Reproducir o pausar una TOMA DE RAP (.m4a)
+    function playRap(beatId, rapId) {
+      const beat = beatsData.find(b => b.id === beatId);
+      if (!beat) return;
+      const rap = beat.raps.find(r => r.id === rapId);
+      if (!rap) return;
+
+      if (activePlayback.type === 'rap' && activePlayback.rapId === rapId) {
+        toggleCurrentAudio();
+        return;
+      }
+
+      stopAllAudio();
+
+      activePlayback = {
+        type: 'rap',
+        beatId: beat.id,
+        rapId: rap.id,
+        isPlaying: true,
+        progress: 0,
+        elapsedSec: 0,
+        durationSec: rap.durationSec || 24
+      };
+
+      if (rap.audioUrl) {
+        htmlAudio.src = rap.audioUrl;
+        htmlAudio.play().catch(() => {});
+        htmlAudio.onloadedmetadata = () => {
+          if (isFinite(htmlAudio.duration)) {
+            activePlayback.durationSec = htmlAudio.duration;
+          }
+        };
+        htmlAudio.ontimeupdate = () => {
+          if (activePlayback.type === 'rap' && activePlayback.rapId === rap.id) {
+            activePlayback.elapsedSec = htmlAudio.currentTime;
+            activePlayback.durationSec = isFinite(htmlAudio.duration) ? htmlAudio.duration : 24;
+            activePlayback.progress = (activePlayback.elapsedSec / activePlayback.durationSec) * 100;
+            updateProgressDOM();
+          }
+        };
+        htmlAudio.onended = () => stopAllAudio();
+      } else {
+        startBoomBapSynth('rap', beat.bpm, rap.synthSeed);
+        startSyntheticProgressTimer();
+      }
+
+      updateStickyPlayerUI(`${rap.fileName}`, `${rap.rapper} sobre "${beat.title}"`, 'RAP .M4A');
+      renderAll();
+    }
+
+    function startSyntheticProgressTimer() {
+      if (progressTimer) clearInterval(progressTimer);
+      progressTimer = setInterval(() => {
+        if (!activePlayback.isPlaying) return;
+        activePlayback.elapsedSec += 0.25;
+        if (activePlayback.elapsedSec >= activePlayback.durationSec) {
+          activePlayback.elapsedSec = 0; // Loop continuo estilo MPC
+        }
+        activePlayback.progress = (activePlayback.elapsedSec / activePlayback.durationSec) * 100;
+        updateProgressDOM();
+      }, 250);
+    }
+
+    function updateProgressDOM() {
+      document.getElementById('stickyCurrentTime').textContent = formatTime(activePlayback.elapsedSec);
+      document.getElementById('stickyDuration').textContent = formatTime(activePlayback.durationSec);
+      document.getElementById('stickyProgressBar').style.width = `${Math.min(100, activePlayback.progress)}%`;
+
+      if (activePlayback.type === 'beat' && activePlayback.beatId) {
+        const el = document.getElementById(`beat-prog-${activePlayback.beatId}`);
+        if (el) el.style.width = `${Math.min(100, activePlayback.progress)}%`;
+      }
+      if (activePlayback.type === 'rap' && activePlayback.rapId) {
+        const el = document.getElementById(`rap-prog-${activePlayback.rapId}`);
+        if (el) el.style.width = `${Math.min(100, activePlayback.progress)}%`;
+      }
+    }
+
+    function toggleCurrentAudio() {
+      if (!activePlayback.type) return;
+      activePlayback.isPlaying = !activePlayback.isPlaying;
+
+      if (htmlAudio.src && !htmlAudio.ended && (
+        (activePlayback.type === 'beat' && beatsData.find(b => b.id === activePlayback.beatId)?.audioUrl) ||
+        (activePlayback.type === 'rap' && beatsData.find(b => b.id === activePlayback.beatId)?.raps.find(r => r.id === activePlayback.rapId)?.audioUrl)
+      )) {
+        if (activePlayback.isPlaying) htmlAudio.play();
+        else htmlAudio.pause();
+      } else {
+        if (activePlayback.isPlaying) {
+          const beat = beatsData.find(b => b.id === activePlayback.beatId);
+          const rap = beat?.raps.find(r => r.id === activePlayback.rapId);
+          startBoomBapSynth(activePlayback.type, beat?.bpm || 90, activePlayback.type === 'beat' ? beat?.synthSeed : rap?.synthSeed);
+        } else {
+          stopSynthesizer();
+        }
+      }
+
+      document.getElementById('stickyPlayPauseBtn').textContent = activePlayback.isPlaying ? '⏸' : '▶';
+      renderAll();
+    }
+
+    function seekGlobalAudio(event) {
+      if (!activePlayback.type) return;
+      const rect = event.currentTarget.getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+      activePlayback.elapsedSec = ratio * activePlayback.durationSec;
+      activePlayback.progress = ratio * 100;
+      if (htmlAudio.src && isFinite(htmlAudio.duration)) {
+        htmlAudio.currentTime = activePlayback.elapsedSec;
+      }
+      updateProgressDOM();
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. GENERADOR DE CARÁTULAS Y RETRATOS B&N ALTO CONTRASTE (GRISELDA STYLE)
+    // -----------------------------------------------------------------------
+    function getArtistAvatarSVG(seed, role) {
+      const accent = role === 'Beatmaker' ? '#39ff14' : '#dc2626';
+      const variant = (seed || 0) % 4;
+      const motifs = [
+        // Silueta encapuchada alto contraste (estilo Griselda)
+        `<rect width="100" height="100" fill="#09090b"/>
+         <circle cx="50" cy="50" r="44" fill="#18181b" stroke="${accent}" stroke-width="3"/>
+         <path d="M22 92 C24 62, 34 52, 50 52 C66 52, 76 62, 78 92 Z" fill="#e4e4e7" stroke="#000" stroke-width="3"/>
+         <path d="M32 42 C32 24, 68 24, 68 42 C68 56, 60 62, 50 62 C40 62, 32 56, 32 42 Z" fill="#09090b" stroke="#fff" stroke-width="2.5"/>
+         <rect x="37" y="40" width="10" height="4" fill="${accent}"/>
+         <rect x="53" y="40" width="10" height="4" fill="${accent}"/>`,
+        // Máscara metálica sombra
+        `<rect width="100" height="100" fill="#111113"/>
+         <polygon points="50,12 85,30 80,76 50,92 20,76 15,30" fill="#d4d4d8" stroke="#000" stroke-width="4"/>
+         <polygon points="30,42 46,48 33,54" fill="#000"/>
+         <polygon points="70,42 54,48 67,54" fill="#000"/>
+         <rect x="46" y="48" width="8" height="24" fill="#000"/>
+         <circle cx="82" cy="20" r="8" fill="${accent}" stroke="#000" stroke-width="2"/>`,
+        // Pads MPC / Beatmaker B&W
+        `<rect width="100" height="100" fill="#09090b"/>
+         <rect x="14" y="14" width="72" height="72" rx="8" fill="#27272a" stroke="#fff" stroke-width="2.5"/>
+         <rect x="22" y="22" width="16" height="16" fill="${accent}" stroke="#000" stroke-width="2"/>
+         <rect x="42" y="22" width="16" height="16" fill="#e4e4e7" stroke="#000" stroke-width="2"/>
+         <rect x="62" y="22" width="16" height="16" fill="#71717a" stroke="#000" stroke-width="2"/>
+         <rect x="22" y="42" width="16" height="16" fill="#71717a" stroke="#000" stroke-width="2"/>
+         <rect x="42" y="42" width="16" height="16" fill="${accent}" stroke="#000" stroke-width="2"/>
+         <rect x="62" y="42" width="16" height="16" fill="#e4e4e7" stroke="#000" stroke-width="2"/>
+         <rect x="22" y="64" width="56" height="12" fill="#000" stroke="${accent}" stroke-width="1.5"/>`,
+        // Micrófono dinámico crudo B&W
+        `<rect width="100" height="100" fill="#18181b"/>
+         <circle cx="50" cy="36" r="18" fill="#e4e4e7" stroke="#000" stroke-width="3.5"/>
+         <line x1="32" y1="36" x2="68" y2="36" stroke="#000" stroke-width="3"/>
+         <polygon points="42,54 58,54 54,88 46,88" fill="#71717a" stroke="#000" stroke-width="3"/>
+         <circle cx="76" cy="24" r="7" fill="${accent}" stroke="#000" stroke-width="2"/>`
+      ];
+      return `<svg viewBox="0 0 100 100" class="w-full h-full">${motifs[variant]}</svg>`;
+    }
+
+    function getCoverSVG(theme, title) {
+      const safeTitle = (title || 'RAW').slice(0, 14).toUpperCase();
+      if (theme === 'cassette') {
+        return `
+          <svg viewBox="0 0 120 120" class="w-full h-full">
+            <rect width="120" height="120" fill="#18181b"/>
+            <rect x="12" y="26" width="96" height="68" rx="8" fill="#e4e4e7" stroke="#000" stroke-width="4"/>
+            <rect x="22" y="34" width="76" height="16" fill="#dc2626" stroke="#000" stroke-width="2"/>
+            <text x="60" y="45" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#fff">${safeTitle}</text>
+            <rect x="28" y="56" width="64" height="22" rx="4" fill="#09090b" stroke="#000" stroke-width="2"/>
+            <circle cx="44" cy="67" r="7" fill="#39ff14" stroke="#000" stroke-width="2"/>
+            <circle cx="76" cy="67" r="7" fill="#39ff14" stroke="#000" stroke-width="2"/>
+          </svg>
+        `;
+      }
+      if (theme === 'spray') {
+        return `
+          <svg viewBox="0 0 120 120" class="w-full h-full">
+            <rect width="120" height="120" fill="#09090b"/>
+            <circle cx="60" cy="60" r="48" fill="#39ff14" opacity="0.18"/>
+            <rect x="40" y="42" width="40" height="62" rx="6" fill="#e4e4e7" stroke="#000" stroke-width="4"/>
+            <rect x="40" y="58" width="40" height="24" fill="#39ff14" stroke="#000" stroke-width="2.5"/>
+            <rect x="48" y="30" width="24" height="12" fill="#71717a" stroke="#000" stroke-width="3"/>
+            <rect x="55" y="21" width="10" height="9" fill="#fff" stroke="#000" stroke-width="2"/>
+            <circle cx="32" cy="24" r="4" fill="#39ff14"/>
+            <circle cx="22" cy="30" r="2.5" fill="#39ff14"/>
+          </svg>
+        `;
+      }
+      if (theme === 'vinyl') {
+        return `
+          <svg viewBox="0 0 120 120" class="w-full h-full">
+            <rect width="120" height="120" fill="#111113"/>
+            <circle cx="60" cy="60" r="48" fill="#09090b" stroke="#fff" stroke-width="2.5"/>
+            <circle cx="60" cy="60" r="36" fill="none" stroke="#27272a" stroke-width="2"/>
+            <circle cx="60" cy="60" r="26" fill="none" stroke="#27272a" stroke-width="2"/>
+            <circle cx="60" cy="60" r="17" fill="#dc2626" stroke="#000" stroke-width="3"/>
+            <circle cx="60" cy="60" r="4" fill="#000"/>
+          </svg>
+        `;
+      }
+      // Tema por defecto: 'mask' (Máscara estilo MF DOOM / Griselda B&W)
+      return `
+        <svg viewBox="0 0 120 120" class="w-full h-full">
+          <rect width="120" height="120" fill="#09090b"/>
+          <path d="M60 14 L96 34 L90 88 L60 106 L30 88 L24 34 Z" fill="#d4d4d8" stroke="#000" stroke-width="4"/>
+          <polygon points="36,48 54,55 40,62" fill="#000"/>
+          <polygon points="84,48 66,55 80,62" fill="#000"/>
+          <rect x="56" y="55" width="8" height="34" fill="#000"/>
+          <circle cx="60" cy="28" r="5" fill="#dc2626" stroke="#000" stroke-width="2"/>
+        </svg>
+      `;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. CONTROLADORES DE ROLES (BEATMAKER VS RAPPER) Y MODALES DE SUBIDA
+    // -----------------------------------------------------------------------
+    function showRoleRestriction(requiredRole, actionDescription) {
+      document.getElementById('roleNoticeTitle').textContent = `SOLO PARA ${requiredRole.toUpperCase()}S`;
+      document.getElementById('roleNoticeBody').innerHTML = `
+        Actualmente estás conectado como <strong class="text-white">${currentUser.aka} (${currentUser.role})</strong>.<br><br>
+        Para ${actionDescription}, necesitás tener el rol de <strong class="text-markerGreen">${requiredRole}</strong>.
+      `;
+      const switchBtn = document.getElementById('roleQuickSwitchBtn');
+      switchBtn.textContent = `Cambiar a ${requiredRole} ahora`;
+      switchBtn.onclick = () => {
+        currentUser.role = requiredRole;
+        if (artistsDirectory[currentUser.aka]) {
+          artistsDirectory[currentUser.aka].role = requiredRole;
+        }
+        updateHeaderUserUI();
+        closeModal('roleNoticeModal');
+        showToast(`Rol cambiado a ${requiredRole}`);
+        if (requiredRole === 'Beatmaker') {
+          openModal('uploadBeatModal');
+        } else if (currentTargetBeatId) {
+          openUploadRapModal(currentTargetBeatId);
+        }
+      };
+      openModal('roleNoticeModal');
+    }
+
+    function handleUploadBeatClick() {
+      if (currentUser.role !== 'Beatmaker') {
+        showRoleRestriction('Beatmaker', 'subir instrumentales (.mp3, .wav, .flac)');
+        return;
+      }
+      openModal('uploadBeatModal');
+    }
+
+    function handleAddRapClick(beatId) {
+      currentTargetBeatId = beatId;
+      if (currentUser.role !== 'Rapper') {
+        showRoleRestriction('Rapper', 'subir notas de voz (.m4a) o grabar freestyle sobre un beat');
+        return;
+      }
+      openUploadRapModal(beatId);
+    }
+
+    function openUploadRapModal(beatId) {
+      const beat = beatsData.find(b => b.id === beatId);
+      if (!beat) return;
+      currentTargetBeatId = beatId;
+      document.getElementById('rapTargetBeatName').textContent = `"${beat.title}" (${beat.producer} • ${beat.bpm} BPM)`;
+      document.getElementById('rapFileInput').value = '';
+      document.getElementById('rapCommentInput').value = '';
+      recordedBlobUrl = null;
+      document.getElementById('micPreviewAudio').classList.add('hidden');
+      document.getElementById('recTimerDisplay').textContent = '00:00';
+      switchRapInputMode('file');
+      openModal('uploadRapModal');
+    }
+
+    function closeRapModal() {
+      stopMicRecordingIfActive();
+      closeModal('uploadRapModal');
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. GRABADORA DE MICRÓFONO INTEGRADA (PARA RAPS ESPONTÁNEOS EN VIVO)
+    // -----------------------------------------------------------------------
+    function switchRapInputMode(mode) {
+      rapInputMode = mode;
+      const filePanel = document.getElementById('rapFilePanel');
+      const micPanel = document.getElementById('rapMicPanel');
+      const tabFile = document.getElementById('tabFileModeBtn');
+      const tabMic = document.getElementById('tabMicModeBtn');
+
+      if (mode === 'file') {
+        filePanel.classList.remove('hidden');
+        micPanel.classList.add('hidden');
+        tabFile.className = 'font-mono text-xs font-bold py-2 px-2 rounded-lg bg-markerGreen text-black border border-black cursor-pointer';
+        tabMic.className = 'font-mono text-xs font-bold py-2 px-2 rounded-lg text-zinc-300 hover:text-white cursor-pointer';
+      } else {
+        filePanel.classList.add('hidden');
+        micPanel.classList.remove('hidden');
+        tabMic.className = 'font-mono text-xs font-bold py-2 px-2 rounded-lg bg-markerGreen text-black border border-black cursor-pointer';
+        tabFile.className = 'font-mono text-xs font-bold py-2 px-2 rounded-lg text-zinc-300 hover:text-white cursor-pointer';
+      }
+    }
+
+    function toggleTargetBeatPreview() {
+      if (!currentTargetBeatId) return;
+      playBeat(currentTargetBeatId);
+    }
+
+    async function toggleMicRecording() {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        stopMicRecordingIfActive();
+        return;
+      }
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) recordedChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+          recordedBlobUrl = URL.createObjectURL(blob);
+          const previewEl = document.getElementById('micPreviewAudio');
+          previewEl.src = recordedBlobUrl;
+          previewEl.classList.remove('hidden');
+          stream.getTracks().forEach(t => t.stop());
+        };
+
+        mediaRecorder.start();
+        recSeconds = 0;
+        document.getElementById('recBtnLabel').textContent = 'Detener Grabación';
+        document.getElementById('recDot').classList.add('animate-ping');
+
+        recInterval = setInterval(() => {
+          recSeconds++;
+          const mins = String(Math.floor(recSeconds / 60)).padStart(2, '0');
+          const secs = String(recSeconds % 60).padStart(2, '0');
+          document.getElementById('recTimerDisplay').textContent = `${mins}:${secs}`;
+        }, 1000);
+      } catch (err) {
+        showToast('No se pudo acceder al micrófono. Podés subir un archivo .m4a');
+      }
+    }
+
+    function stopMicRecordingIfActive() {
+      if (recInterval) {
+        clearInterval(recInterval);
+        recInterval = null;
+      }
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+      }
+      document.getElementById('recBtnLabel').textContent = 'Grabar Toma';
+      document.getElementById('recDot').classList.remove('animate-ping');
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. ENVÍO DE FORMULARIOS (REGISTRO, SUBIR BEAT, SUBIR RAP .M4A)
+    // -----------------------------------------------------------------------
+    function submitRegistration(event) {
+      event.preventDefault();
+      let rawAka = document.getElementById('regUsernameInput').value.trim();
+      if (!rawAka) return;
+      if (!rawAka.startsWith('@')) rawAka = '@' + rawAka.replace(/\s+/g, '_');
+
+      const selectedRole = document.querySelector('input[name="userRole"]:checked').value;
+      const city = document.getElementById('regCityInput').value.trim() || 'Underground Sur';
+      const crew = document.getElementById('regCrewInput').value.trim() || 'MM..Tape Collective';
+      const bio = document.getElementById('regBioInput').value.trim() || (
+        selectedRole === 'Beatmaker'
+          ? 'Cocinando loops crudos y baterías sucias.'
+          : 'Grabando tomas espontáneas en .m4a desde el teléfono.'
+      );
+
+      const existing = artistsDirectory[rawAka];
+      currentUser = {
+        aka: rawAka,
+        role: selectedRole,
+        city: city,
+        crew: crew,
+        bio: bio,
+        avatarSeed: existing ? existing.avatarSeed : Math.floor(Math.random() * 10)
+      };
+      artistsDirectory[rawAka] = { ...currentUser };
+
+      updateHeaderUserUI();
+      closeModal('authModal');
+      renderAll();
+      showToast(`Bienvenido ${currentUser.aka} (${currentUser.role})`);
+    }
+
+    function submitNewBeat(event) {
+      event.preventDefault();
+      if (currentUser.role !== 'Beatmaker') return;
+
+      const title = document.getElementById('beatTitleInput').value.trim();
+      const bpm = parseInt(document.getElementById('beatBpmInput').value, 10) || 90;
+      const theme = document.getElementById('beatCoverThemeInput').value;
+      const fileInput = document.getElementById('beatFileInput');
+      const file = fileInput.files[0];
+
+      if (!title || !file) return;
+
+      const extMatch = file.name.match(/\.[0-9a-z]+$/i);
+      const formatTag = extMatch ? `${extMatch[0].toUpperCase()} RAW` : '.WAV RAW';
+      const objectUrl = URL.createObjectURL(file);
+      const newBeat = {
+        id: 'beat-' + Date.now(),
+        title: title,
+        producer: currentUser.aka,
+        bpm: bpm,
+        musicalKey: 'Cm',
+        formatTag: formatTag,
+        coverTheme: theme,
+        isTop: false,
+        plays: 1,
+        likes: 1,
+        likedByMe: true,
+        audioUrl: objectUrl,
+        synthSeed: Math.floor(Math.random() * 20) + 1,
+        raps: []
+      };
+
+      beatsData.unshift(newBeat);
+      closeModal('uploadBeatModal');
+      event.target.reset();
+      updateHeaderUserUI();
+      renderAll();
+      showToast(`¡Beat "${title}" publicado en NEW BEATS!`);
+    }
+
+    function submitNewRap(event) {
+      event.preventDefault();
+      if (currentUser.role !== 'Rapper' || !currentTargetBeatId) return;
+
+      const beat = beatsData.find(b => b.id === currentTargetBeatId);
+      if (!beat) return;
+
+      const comment = document.getElementById('rapCommentInput').value.trim() || 'Toma espontánea recién subida';
+      let finalAudioUrl = null;
+      let finalFileName = 'nota_voz_celu.m4a';
+      let finalFormat = '.M4A';
+
+      if (rapInputMode === 'file') {
+        const file = document.getElementById('rapFileInput').files[0];
+        if (!file) {
+          showToast('Seleccioná un archivo .m4a o audio de tu dispositivo');
+          return;
+        }
+        finalAudioUrl = URL.createObjectURL(file);
+        finalFileName = file.name;
+        const extMatch = file.name.match(/\.[0-9a-z]+$/i);
+        finalFormat = extMatch ? extMatch[0].toUpperCase() : '.M4A';
+      } else {
+        if (!recordedBlobUrl) {
+          showToast('Grabá una toma con el micrófono primero');
+          return;
+        }
+        finalAudioUrl = recordedBlobUrl;
+        finalFileName = `toma_mic_${Math.floor(Math.random() * 900 + 100)}.m4a`;
+        finalFormat = 'MIC .M4A';
+      }
+
+      const newRap = {
+        id: 'rap-' + Date.now(),
+        rapper: currentUser.aka,
+        fileName: finalFileName,
+        format: finalFormat,
+        comment: comment,
+        likes: 1,
+        likedByMe: true,
+        durationSec: recSeconds > 0 ? recSeconds : 25,
+        audioUrl: finalAudioUrl,
+        synthSeed: Math.floor(Math.random() * 40) + 10
+      };
+
+      beat.raps.unshift(newRap);
+      closeRapModal();
+      updateHeaderUserUI();
+      renderAll();
+
+      // Si el modal de detalle de un New Beat estaba abierto, actualizarlo también
+      if (!document.getElementById('beatDetailModal').classList.contains('hidden')) {
+        openBeatDetailModal(beat.id);
+      }
+
+      showToast(`¡Barras subidas (${finalFileName}) sobre "${beat.title}"!`);
+    }
+
+    function toggleLikeBeat(beatId) {
+      const beat = beatsData.find(b => b.id === beatId);
+      if (!beat) return;
+      beat.likedByMe = !beat.likedByMe;
+      beat.likes = (beat.likes || 0) + (beat.likedByMe ? 1 : -1);
+      updateHeaderUserUI();
+      renderAll();
+
+      if (!document.getElementById('beatDetailModal').classList.contains('hidden')) {
+        openBeatDetailModal(beat.id);
+      }
+      if (!document.getElementById('artistProfileModal').classList.contains('hidden') && currentViewedProfileAka) {
+        openArtistProfileModal(currentViewedProfileAka);
+      }
+    }
+
+    function toggleLikeRap(beatId, rapId) {
+      const beat = beatsData.find(b => b.id === beatId);
+      if (!beat) return;
+      const rap = beat.raps.find(r => r.id === rapId);
+      if (!rap) return;
+
+      rap.likedByMe = !rap.likedByMe;
+      rap.likes += rap.likedByMe ? 1 : -1;
+      updateHeaderUserUI();
+      renderAll();
+
+      if (!document.getElementById('beatDetailModal').classList.contains('hidden')) {
+        openBeatDetailModal(beat.id);
+      }
+      if (!document.getElementById('artistProfileModal').classList.contains('hidden') && currentViewedProfileAka) {
+        openArtistProfileModal(currentViewedProfileAka);
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 7. CÁLCULO DE FUEGOS TOTALES, PERFILES DE ARTISTA Y MENSAJERÍA (DM)
+    // -----------------------------------------------------------------------
+    let currentViewedProfileAka = null;
+
+    function ensureArtistEntry(aka, defaultRole = 'Rapper') {
+      if (!artistsDirectory[aka]) {
+        artistsDirectory[aka] = {
+          aka,
+          role: defaultRole,
+          city: 'Underground Sur',
+          crew: 'MM..Tape Dept.',
+          bio: 'Miembro activo de la escena cruda de MM..BEATS.',
+          avatarSeed: aka.length % 4
+        };
+      }
+      return artistsDirectory[aka];
+    }
+
+    // Calcula la suma de TODOS los fuegos (🔥) recibidos por un Beatmaker o Rapper
+    function getArtistTotalFires(aka) {
+      let total = 0;
+      beatsData.forEach(beat => {
+        if (beat.producer === aka) {
+          total += (beat.likes || 0);
+        }
+        beat.raps.forEach(rap => {
+          if (rap.rapper === aka) {
+            total += (rap.likes || 0);
+          }
+        });
+      });
+      return total;
+    }
+
+    function getArtistMetrics(aka) {
+      const profile = ensureArtistEntry(aka);
+      const producedBeats = beatsData.filter(b => b.producer === aka);
+      const recordedRaps = [];
+      let totalPlays = 0;
+
+      beatsData.forEach(beat => {
+        if (beat.producer === aka) {
+          totalPlays += (beat.plays || 0);
+        }
+        beat.raps.forEach(rap => {
+          if (rap.rapper === aka) {
+            recordedRaps.push({ ...rap, beatId: beat.id, beatTitle: beat.title, beatProducer: beat.producer });
+            totalPlays += Math.max(12, (rap.likes || 1) * 4);
+          }
+        });
+      });
+
+      const totalFires = getArtistTotalFires(aka);
+
+      // Posición en el ranking de su categoría
+      const sameRoleArtists = Object.values(artistsDirectory)
+        .filter(a => a.role === profile.role)
+        .map(a => ({ aka: a.aka, fires: getArtistTotalFires(a.aka) }))
+        .sort((a, b) => b.fires - a.fires);
+      const rankIndex = sameRoleArtists.findIndex(item => item.aka === aka);
+
+      return {
+        profile,
+        producedBeats,
+        recordedRaps,
+        totalFires,
+        totalPlays,
+        rank: rankIndex >= 0 ? rankIndex + 1 : '-'
+      };
+    }
+
+    function openArtistProfileModal(aka) {
+      currentViewedProfileAka = aka;
+      const metrics = getArtistMetrics(aka);
+      const { profile, producedBeats, recordedRaps, totalFires, totalPlays, rank } = metrics;
+      const isMe = profile.aka === currentUser.aka;
+      const isProd = profile.role === 'Beatmaker';
+
+      const catalogHtml = isProd
+        ? (producedBeats.length > 0
+            ? producedBeats.map(b => {
+                const isPlaying = activePlayback.type === 'beat' && activePlayback.beatId === b.id && activePlayback.isPlaying;
+                return `
+                  <div class="bg-zinc-950 border-2 border-black rounded-xl p-3 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                      <button
+                        onclick="playBeat('${b.id}'); openArtistProfileModal('${profile.aka}')"
+                        class="comic-btn w-9 h-9 rounded-lg ${isPlaying ? 'bg-doomGold text-black' : 'bg-markerGreen text-black'} flex items-center justify-center font-bold text-xs shrink-0 cursor-pointer"
+                      >
+                        ${isPlaying ? '⏸' : '▶'}
+                      </button>
+                      <div class="min-w-0">
+                        <div class="font-bold text-sm text-white truncate">${b.title}</div>
+                        <div class="font-mono text-[11px] text-zinc-400">
+                          ${b.bpm} BPM • ${b.formatTag || '.WAV'} • ${b.raps.length} tomas .m4a
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                      <button
+                        onclick="toggleLikeBeat('${b.id}')"
+                        class="comic-btn px-2.5 py-1 rounded-lg font-mono text-xs font-bold cursor-pointer ${b.likedByMe ? 'bg-fireOrange text-black' : 'bg-zinc-800 text-zinc-200'}"
+                      >
+                        🔥 ${b.likes || 0}
+                      </button>
+                      <button
+                        onclick="closeModal('artistProfileModal'); openBeatDetailModal('${b.id}')"
+                        class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-markerGreen font-mono text-[11px] font-bold px-2.5 py-1 rounded-lg cursor-pointer"
+                      >
+                        Ver Beat →
+                      </button>
+                    </div>
+                  </div>
+                `;
+              }).join('')
+            : `<p class="font-mono text-xs text-zinc-500 bg-zinc-950 border border-black rounded-xl p-4 text-center">Este Beatmaker todavía no publicó instrumentales.</p>`)
+        : (recordedRaps.length > 0
+            ? recordedRaps.map(r => {
+                const isPlaying = activePlayback.type === 'rap' && activePlayback.rapId === r.id && activePlayback.isPlaying;
+                return `
+                  <div class="bg-zinc-950 border-2 border-black rounded-xl p-3 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                      <button
+                        onclick="playRap('${r.beatId}', '${r.id}'); openArtistProfileModal('${profile.aka}')"
+                        class="comic-btn w-9 h-9 rounded-lg ${isPlaying ? 'bg-doomGold text-black' : 'bg-markerGreen text-black'} flex items-center justify-center font-bold text-xs shrink-0 cursor-pointer"
+                      >
+                        ${isPlaying ? '⏸' : '▶'}
+                      </button>
+                      <div class="min-w-0">
+                        <div class="flex items-center gap-1.5">
+                          <span class="font-mono text-xs font-bold text-white truncate">${r.fileName}</span>
+                          <span class="px-1.5 py-0.2 bg-zinc-800 text-markerGreen border border-black rounded text-[10px] font-mono">${r.format}</span>
+                        </div>
+                        <p class="font-sans text-[11px] text-zinc-400 truncate">"${r.comment}"</p>
+                        <button
+                          onclick="closeModal('artistProfileModal'); openBeatDetailModal('${r.beatId}')"
+                          class="font-mono text-[10px] text-doomGold hover:underline mt-0.5 cursor-pointer"
+                        >
+                          Sobre beat: "${r.beatTitle}" (${r.beatProducer}) →
+                        </button>
+                      </div>
+                    </div>
+                    <button
+                      onclick="toggleLikeRap('${r.beatId}', '${r.id}')"
+                      class="comic-btn px-2.5 py-1 rounded-lg font-mono text-xs font-bold shrink-0 cursor-pointer ${r.likedByMe ? 'bg-fireOrange text-black' : 'bg-zinc-800 text-zinc-200'}"
+                    >
+                      🔥 ${r.likes}
+                    </button>
+                  </div>
+                `;
+              }).join('')
+            : `<p class="font-mono text-xs text-zinc-500 bg-zinc-950 border border-black rounded-xl p-4 text-center">Este Rapper todavía no subió maquetas en .m4a.</p>`);
+
+      document.getElementById('artistProfileContent').innerHTML = `
+        <!-- Cabecera Dossier Estilo Griselda B&W -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-4 border-b-[3px] border-black pr-8">
+          <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-[3px] border-black overflow-hidden shrink-0 shadow-[4px_4px_0px_#000]">
+            ${getArtistAvatarSVG(profile.avatarSeed, profile.role)}
+            <div class="absolute bottom-1 inset-x-1 parental-stamp text-[7px] text-center py-0.5">
+              RAW ARTIST
+            </div>
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-bold uppercase border border-black ${isProd ? 'bg-markerGreen text-black' : 'bg-bloodRed text-white'}">
+                ${isProd ? '🎛️ BEATMAKER' : '🎤 RAPPER'}
+              </span>
+              <span class="font-mono text-xs text-zinc-400">📍 ${profile.city}</span>
+              <span class="font-mono text-xs text-doomGold">• ${profile.crew}</span>
+            </div>
+
+            <h3 class="font-graffiti text-3xl sm:text-4xl graffiti-sub truncate">${profile.aka}</h3>
+            <p class="font-mono text-xs text-zinc-300 mt-1.5 leading-relaxed">${profile.bio}</p>
+          </div>
+        </div>
+
+        <!-- Panel Destacado de FUEGOS TOTALES & Estadísticas -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 my-4">
+          <div class="comic-box bg-zinc-950 rounded-xl p-3 text-center border-fireOrange">
+            <div class="font-mono text-[10px] text-zinc-400 uppercase">Fuegos Totales</div>
+            <div class="font-marker text-2xl sm:text-3xl text-fireOrange mt-0.5">🔥 ${totalFires}</div>
+          </div>
+          <div class="comic-box bg-zinc-950 rounded-xl p-3 text-center">
+            <div class="font-mono text-[10px] text-zinc-400 uppercase">Ranking ${isProd ? 'Prod' : 'Rap'}</div>
+            <div class="font-marker text-2xl sm:text-3xl text-markerGreen mt-0.5">#${rank}</div>
+          </div>
+          <div class="comic-box bg-zinc-950 rounded-xl p-3 text-center">
+            <div class="font-mono text-[10px] text-zinc-400 uppercase">${isProd ? 'Beats Subidos' : 'Tomas (.m4a)'}</div>
+            <div class="font-marker text-2xl sm:text-3xl text-white mt-0.5">${isProd ? producedBeats.length : recordedRaps.length}</div>
+          </div>
+          <div class="comic-box bg-zinc-950 rounded-xl p-3 text-center">
+            <div class="font-mono text-[10px] text-zinc-400 uppercase">Plays Totales</div>
+            <div class="font-marker text-2xl sm:text-3xl text-doomGold mt-0.5">${totalPlays}</div>
+          </div>
+        </div>
+
+        <!-- Botón de Comunicación Interna (DM) o Edición si es mi perfil -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
+          ${!isMe ? `
+            <button
+              onclick="closeModal('artistProfileModal'); openDmModal('${profile.aka}')"
+              class="comic-btn flex-1 sm:flex-none bg-markerGreen hover:bg-green-300 text-black font-mono text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>✉️</span>
+              <span>ENVIAR MENSAJE INTERNO (DM) A ${profile.aka}</span>
+            </button>
+          ` : `
+            <button
+              onclick="closeModal('artistProfileModal'); openAuthModal()"
+              class="comic-btn bg-doomGold hover:bg-yellow-300 text-black font-mono text-xs sm:text-sm font-bold px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer"
+            >
+              <span>🎭</span>
+              <span>Editar Mi Bio / Cambiar Rol</span>
+            </button>
+          `}
+
+          <span class="font-mono text-[11px] text-zinc-500">
+            SERIAL: MM-${profile.aka.replace('@', '').toUpperCase().slice(0, 6)}-187
+          </span>
+        </div>
+
+        <!-- Catálogo Crudo del Artista -->
+        <div>
+          <h4 class="font-marker text-xl text-markerGreen mb-2.5">
+            ${isProd ? `CATÁLOGO DE BEATS DE ${profile.aka} (${producedBeats.length})` : `TOMAS DE VOZ (.M4A) DE ${profile.aka} (${recordedRaps.length})`}
+          </h4>
+          <div class="space-y-2.5 max-h-64 overflow-y-auto raps-scroll pr-1">
+            ${catalogHtml}
+          </div>
+        </div>
+      `;
+
+      openModal('artistProfileModal');
+    }
+
+    // --- SISTEMA DE MENSAJERÍA INTERNA (DM) ---
+    function updateDmUnreadBadge() {
+      const unreadCount = dmConversations.filter(c => c.unread).length;
+      const badge = document.getElementById('dmUnreadBadge');
+      if (!badge) return;
+      if (unreadCount > 0) {
+        badge.textContent = unreadCount;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function openDmModal(targetAka = null) {
+      if (targetAka && targetAka !== currentUser.aka) {
+        ensureArtistEntry(targetAka);
+        let thread = dmConversations.find(c => c.partnerAka === targetAka);
+        if (!thread) {
+          thread = {
+            partnerAka: targetAka,
+            unread: false,
+            autoReplied: false,
+            messages: []
+          };
+          dmConversations.unshift(thread);
+        }
+        activeDmPartner = targetAka;
+      } else if (!activeDmPartner && dmConversations.length > 0) {
+        activeDmPartner = dmConversations[0].partnerAka;
+      }
+
+      if (activeDmPartner) {
+        const currentThread = dmConversations.find(c => c.partnerAka === activeDmPartner);
+        if (currentThread) currentThread.unread = false;
+      }
+
+      populateDmSelectors();
+      renderDmModal();
+      updateDmUnreadBadge();
+      openModal('dmModal');
+    }
+
+    function openDmThread(partnerAka) {
+      openDmModal(partnerAka);
+    }
+
+    function populateDmSelectors() {
+      // Poblar selector de artistas para iniciar chat
+      const userSelect = document.getElementById('dmNewChatSelect');
+      const otherArtists = Object.values(artistsDirectory).filter(a => a.aka !== currentUser.aka);
+      userSelect.innerHTML = `<option value="">+ Nuevo chat con Beatmaker / Rapper...</option>` +
+        otherArtists.map(a => `<option value="${a.aka}">${a.aka} (${a.role})</option>`).join('');
+
+      // Poblar selector de beats para adjuntar en el mensaje
+      const beatSelect = document.getElementById('dmAttachBeatSelect');
+      beatSelect.innerHTML = `<option value="">📎 Adjuntar Beat (opcional)</option>` +
+        beatsData.map(b => `<option value="${b.id}">🎹 ${b.title} (${b.producer})</option>`).join('');
+    }
+
+    function insertQuickDm(text) {
+      const input = document.getElementById('dmMessageInput');
+      input.value = text;
+      input.focus();
+    }
+
+    function renderDmModal() {
+      // 1. Lista de hilos a la izquierda
+      const threadsContainer = document.getElementById('dmThreadsList');
+      threadsContainer.innerHTML = dmConversations.map(conv => {
+        const artist = ensureArtistEntry(conv.partnerAka);
+        const isActive = conv.partnerAka === activeDmPartner;
+        const lastMsg = conv.messages[conv.messages.length - 1];
+        const isProd = artist.role === 'Beatmaker';
+
+        return `
+          <button
+            type="button"
+            onclick="openDmThread('${conv.partnerAka}')"
+            class="w-full text-left p-2.5 rounded-xl border-2 transition-all cursor-pointer flex items-center gap-2.5 ${isActive ? 'bg-zinc-800 border-markerGreen' : 'bg-zinc-900/80 border-black hover:bg-zinc-800/70'}"
+          >
+            <div class="w-9 h-9 rounded-lg border border-black overflow-hidden shrink-0">
+              ${getArtistAvatarSVG(artist.avatarSeed, artist.role)}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="font-mono text-xs font-bold text-white truncate">${artist.aka}</span>
+                <span class="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border border-black ${isProd ? 'bg-markerGreen text-black' : 'bg-bloodRed text-white'}">
+                  ${isProd ? 'PROD' : 'RAP'}
+                </span>
+              </div>
+              <p class="font-sans text-[11px] text-zinc-400 truncate mt-0.5">
+                ${lastMsg ? lastMsg.text : 'Canal abierto. Mandá el primer mensaje...'}
+              </p>
+            </div>
+            ${conv.unread ? `<span class="w-2.5 h-2.5 rounded-full bg-bloodRed border border-black shrink-0"></span>` : ''}
+          </button>
+        `;
+      }).join('');
+
+      // 2. Cabecera y mensajes del hilo activo
+      const headerEl = document.getElementById('dmActiveHeader');
+      const msgsEl = document.getElementById('dmMessagesList');
+
+      if (!activeDmPartner) {
+        headerEl.innerHTML = `<span class="font-mono text-xs text-zinc-400">Seleccioná un artista</span>`;
+        msgsEl.innerHTML = '';
+        return;
+      }
+
+      const partner = ensureArtistEntry(activeDmPartner);
+      const thread = dmConversations.find(c => c.partnerAka === activeDmPartner);
+      const isProd = partner.role === 'Beatmaker';
+
+      headerEl.innerHTML = `
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-lg border border-black overflow-hidden shrink-0">
+            ${getArtistAvatarSVG(partner.avatarSeed, partner.role)}
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                onclick="closeModal('dmModal'); openArtistProfileModal('${partner.aka}')"
+                class="font-mono text-sm font-bold text-white hover:text-markerGreen underline truncate cursor-pointer"
+              >
+                ${partner.aka}
+              </button>
+              <span class="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold border border-black ${isProd ? 'bg-markerGreen text-black' : 'bg-bloodRed text-white'}">
+                ${partner.role}
+              </span>
+            </div>
+            <p class="font-mono text-[10px] text-zinc-400 truncate">📍 ${partner.city} • 🔥 ${getArtistTotalFires(partner.aka)} fuegos</p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onclick="closeModal('dmModal'); openArtistProfileModal('${partner.aka}')"
+          class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-markerGreen font-mono text-[11px] font-bold px-2.5 py-1 rounded-lg shrink-0 cursor-pointer"
+        >
+          Ver Perfil →
+        </button>
+      `;
+
+      if (!thread || thread.messages.length === 0) {
+        msgsEl.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center p-6 font-mono text-xs text-zinc-500">
+            <span class="text-3xl mb-2">📼</span>
+            <p>Todavía no hay mensajes con <strong class="text-white">${partner.aka}</strong>.</p>
+            <p class="mt-1">Coordiná stems, maquetas .m4a o un tape colaborativo.</p>
+          </div>
+        `;
+        return;
+      }
+
+      msgsEl.innerHTML = thread.messages.map(msg => {
+        const isMine = msg.sender === currentUser.aka;
+        const attachedBeat = msg.beatRefId ? beatsData.find(b => b.id === msg.beatRefId) : null;
+
+        return `
+          <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'}">
+            <div class="max-w-[85%] sm:max-w-[75%] rounded-2xl p-3 border-2 border-black shadow-[3px_3px_0px_#000] ${isMine ? 'bg-zinc-900 border-markerGreen/80 text-white' : 'bg-zinc-950 text-zinc-200'}">
+              <div class="flex items-center justify-between gap-3 mb-1 font-mono text-[10px]">
+                <span class="font-bold ${isMine ? 'text-markerGreen' : 'text-bloodRed'}">${msg.sender}</span>
+                <span class="text-zinc-500">${msg.time}</span>
+              </div>
+              <p class="font-sans text-xs sm:text-sm leading-relaxed">${msg.text}</p>
+
+              ${attachedBeat ? `
+                <div class="mt-2 bg-black/80 border border-zinc-700 rounded-xl p-2 flex items-center justify-between gap-2">
+                  <div class="min-w-0">
+                    <div class="font-mono text-[10px] text-doomGold">🎹 BEAT ADJUNTO</div>
+                    <div class="font-bold text-xs text-white truncate">${attachedBeat.title} (${attachedBeat.bpm} BPM)</div>
+                  </div>
+                  <button
+                    type="button"
+                    onclick="playBeat('${attachedBeat.id}')"
+                    class="comic-btn bg-markerGreen text-black font-mono text-[10px] font-bold px-2 py-1 rounded-lg shrink-0 cursor-pointer"
+                  >
+                    ▶ Play
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+
+    function handleSendDmSubmit(event) {
+      event.preventDefault();
+      if (!activeDmPartner) return;
+
+      const input = document.getElementById('dmMessageInput');
+      const beatSelect = document.getElementById('dmAttachBeatSelect');
+      const text = input.value.trim();
+      const beatRefId = beatSelect.value || null;
+
+      if (!text && !beatRefId) return;
+
+      const thread = dmConversations.find(c => c.partnerAka === activeDmPartner);
+      if (!thread) return;
+
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      thread.messages.push({
+        sender: currentUser.aka,
+        text: text || 'Te comparto este beat de MM..BEATS:',
+        time: timeStr,
+        beatRefId: beatRefId
+      });
+
+      input.value = '';
+      beatSelect.value = '';
+      renderDmModal();
+
+      // Respuesta realista del estudio si es la primera vez que le escribís en la sesión
+      if (!thread.autoReplied) {
+        thread.autoReplied = true;
+        const partnerObj = ensureArtistEntry(activeDmPartner);
+        setTimeout(() => {
+          const replyText = partnerObj.role === 'Beatmaker'
+            ? 'De una hermano, tirate una nota de voz .m4a encima y si queda asesina armamos el track completo.'
+            : 'Dale de una, mandame el link del instrumental y hoy mismo le grabo una toma cruda.';
+          thread.messages.push({
+            sender: activeDmPartner,
+            text: replyText,
+            time: timeStr,
+            beatRefId: null
+          });
+          if (document.getElementById('dmModal').classList.contains('hidden')) {
+            thread.unread = true;
+            updateDmUnreadBadge();
+            showToast(`Nuevo DM de ${activeDmPartner}`);
+          } else {
+            renderDmModal();
+          }
+        }, 1200);
+      }
+    }
+
+    function scrollToTopFeed() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. RENDERIZADO DE LA INTERFAZ (FIEL AL BOCETO + PERFILES Y FUEGOS)
+    // -----------------------------------------------------------------------
+    function updateHeaderUserUI() {
+      document.getElementById('headerUserName').textContent = currentUser.aka;
+      const badge = document.getElementById('headerUserRoleBadge');
+      badge.textContent = currentUser.role;
+      badge.className = currentUser.role === 'Beatmaker'
+        ? 'ml-1 px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-markerGreen text-black border border-black'
+        : 'ml-1 px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-doomGold text-black border border-black';
+
+      const miniAvatar = document.getElementById('headerMiniAvatar');
+      if (miniAvatar) {
+        miniAvatar.innerHTML = getArtistAvatarSVG(currentUser.avatarSeed || 0, currentUser.role);
+      }
+
+      const firesBadge = document.getElementById('headerUserFiresBadge');
+      if (firesBadge) {
+        firesBadge.textContent = `🔥 ${getArtistTotalFires(currentUser.aka)}`;
+      }
+      updateDmUnreadBadge();
+    }
+
+    function renderLeaderboards() {
+      // 1. TOP PROD ordenado por Fuegos Totales (🔥) recibidos en sus beats
+      const prodAkas = new Set([
+        ...Object.values(artistsDirectory).filter(a => a.role === 'Beatmaker').map(a => a.aka),
+        ...beatsData.map(b => b.producer)
+      ]);
+
+      const sortedProds = Array.from(prodAkas)
+        .map(aka => {
+          const fires = getArtistTotalFires(aka);
+          const plays = beatsData.filter(b => b.producer === aka).reduce((acc, b) => acc + b.plays, 0);
+          return { aka, fires, plays };
+        })
+        .sort((a, b) => b.fires - a.fires || b.plays - a.plays)
+        .slice(0, 3);
+
+      document.getElementById('topProdList').innerHTML = sortedProds.map((item, idx) => `
+        <li
+          onclick="openArtistProfileModal('${item.aka}')"
+          class="flex items-center justify-between bg-zinc-900/90 hover:bg-zinc-800 border-2 border-black rounded-xl px-3 py-2 cursor-pointer transition-colors group"
+          title="Abrir perfil de ${item.aka}"
+        >
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-6 h-6 rounded-lg ${idx === 0 ? 'bg-markerGreen text-black' : 'bg-zinc-800 text-markerGreen'} border border-black font-bold flex items-center justify-center shrink-0">
+              ${idx + 1}
+            </span>
+            <span class="font-bold text-white group-hover:text-markerGreen truncate">${item.aka}</span>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="text-[11px] text-zinc-400 hidden sm:inline">${item.plays} plays</span>
+            <span class="text-xs text-fireOrange font-bold bg-black px-2 py-0.5 rounded border border-zinc-800">🔥 ${item.fires}</span>
+          </div>
+        </li>
+      `).join('');
+
+      // 2. TOP RAPS ordenado por Fuegos Totales (🔥) acumulados por cada Rapper
+      const rapAkas = new Set();
+      beatsData.forEach(b => b.raps.forEach(r => rapAkas.add(r.rapper)));
+
+      const sortedRappers = Array.from(rapAkas)
+        .map(aka => {
+          const fires = getArtistTotalFires(aka);
+          let takesCount = 0;
+          beatsData.forEach(b => b.raps.forEach(r => { if (r.rapper === aka) takesCount++; }));
+          return { aka, fires, takesCount };
+        })
+        .sort((a, b) => b.fires - a.fires)
+        .slice(0, 3);
+
+      document.getElementById('topRapsList').innerHTML = sortedRappers.map((item, idx) => `
+        <li
+          onclick="openArtistProfileModal('${item.aka}')"
+          class="flex items-center justify-between bg-zinc-900/90 hover:bg-zinc-800 border-2 border-black rounded-xl px-3 py-2 cursor-pointer transition-colors group"
+          title="Abrir perfil de ${item.aka}"
+        >
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-6 h-6 rounded-lg ${idx === 0 ? 'bg-doomGold text-black' : 'bg-zinc-800 text-doomGold'} border border-black font-bold flex items-center justify-center shrink-0">
+              ${idx + 1}
+            </span>
+            <div class="truncate">
+              <span class="font-bold text-white group-hover:text-doomGold">${item.aka}</span>
+              <span class="text-[11px] text-zinc-400 ml-1">(${item.takesCount} .m4a)</span>
+            </div>
+          </div>
+          <span class="text-xs text-fireOrange font-bold bg-black px-2 py-0.5 rounded border border-zinc-800 shrink-0">🔥 ${item.fires}</span>
+        </li>
+      `).join('');
+    }
+
+    function renderRapRowItem(beatId, rap) {
+      const isPlayingThisRap = activePlayback.type === 'rap' && activePlayback.rapId === rap.id && activePlayback.isPlaying;
+      const progressPct = (activePlayback.type === 'rap' && activePlayback.rapId === rap.id) ? activePlayback.progress : 0;
+
+      return `
+        <div class="bg-zinc-900/95 border-2 border-black rounded-xl p-2.5 flex items-center gap-2.5 group hover:border-markerGreen/70 transition-colors">
+          <!-- Botón Play de la nota de voz -->
+          <button
+            onclick="playRap('${beatId}', '${rap.id}')"
+            class="comic-btn w-8 h-8 rounded-lg ${isPlayingThisRap ? 'bg-doomGold text-black' : 'bg-markerGreen text-black'} flex items-center justify-center font-bold text-xs shrink-0 cursor-pointer"
+            title="Escuchar versión de ${rap.rapper}"
+          >
+            ${isPlayingThisRap ? '⏸' : '▶'}
+          </button>
+
+          <!-- Info + Barra horizontal estilo el boceto -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-1.5 mb-1">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <button
+                  type="button"
+                  onclick="openArtistProfileModal('${rap.rapper}')"
+                  class="font-mono text-xs font-bold text-white hover:text-markerGreen underline truncate cursor-pointer"
+                  title="Ver perfil de ${rap.rapper}"
+                >
+                  ${rap.rapper}
+                </button>
+                <span class="px-1.5 py-0.2 bg-zinc-800 text-markerGreen border border-black rounded text-[10px] font-mono font-bold shrink-0">
+                  ${rap.format}
+                </span>
+              </div>
+              <span class="font-mono text-[10px] text-zinc-400 truncate max-w-[105px]" title="${rap.fileName}">
+                ${rap.fileName}
+              </span>
+            </div>
+
+            <!-- Barra de progreso / onda -->
+            <div onclick="playRap('${beatId}', '${rap.id}')" class="w-full h-2.5 bg-zinc-800 rounded-full border border-black overflow-hidden cursor-pointer relative">
+              <div id="rap-prog-${rap.id}" class="h-full bg-doomGold transition-all duration-150" style="width: ${progressPct}%"></div>
+            </div>
+
+            <p class="font-sans text-[11px] text-zinc-400 truncate mt-1">"${rap.comment}"</p>
+          </div>
+
+          <!-- Botón Fuego / Like (suma a los fuegos totales del rapper) -->
+          <button
+            onclick="toggleLikeRap('${beatId}', '${rap.id}')"
+            class="comic-btn px-2 py-1 rounded-lg text-xs font-mono font-bold shrink-0 cursor-pointer ${rap.likedByMe ? 'bg-fireOrange text-black' : 'bg-zinc-800 text-zinc-300 hover:text-white'}"
+            title="Dar fuego a estas barras"
+          >
+            🔥 ${rap.likes}
+          </button>
+        </div>
+      `;
+    }
+
+    function renderTopBeatsFeed() {
+      const topBeats = beatsData.filter(b => b.isTop);
+      const container = document.getElementById('topBeatsFeed');
+
+      container.innerHTML = topBeats.map(beat => {
+        const isPlayingThisBeat = activePlayback.type === 'beat' && activePlayback.beatId === beat.id && activePlayback.isPlaying;
+        const progressPct = (activePlayback.type === 'beat' && activePlayback.beatId === beat.id) ? activePlayback.progress : 0;
+
+        return `
+          <article class="comic-box bg-comicCard rounded-2xl p-4 sm:p-5">
+            <!-- Estructura de 3 columnas exactas del boceto: [Carátula] | [Beat + Waveform + Botón Subir Rap] | [Raps / Comments stack] -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+
+              <!-- COLUMNA IZQUIERDA (3 cols): Cuadro de Carátula del Beat + Sello Raw Tape -->
+              <div class="lg:col-span-3 flex sm:flex-row lg:flex-col items-center gap-3">
+                <div class="relative w-28 h-28 sm:w-36 sm:h-36 lg:w-full lg:aspect-square rounded-xl border-[3px] border-black overflow-hidden shrink-0 shadow-[4px_4px_0px_#000]">
+                  ${getCoverSVG(beat.coverTheme, beat.title)}
+                  <div class="absolute top-1.5 left-1.5 parental-stamp text-[8px] px-1.5 py-0.5">
+                    ${beat.formatTag || '.WAV'}
+                  </div>
+                  <button
+                    onclick="playBeat('${beat.id}')"
+                    class="absolute inset-0 bg-black/35 hover:bg-black/20 flex items-center justify-center transition-all cursor-pointer group"
+                    aria-label="Reproducir ${beat.title}"
+                  >
+                    <span class="comic-btn w-12 h-12 rounded-full bg-markerGreen text-black flex items-center justify-center text-xl font-bold group-hover:scale-105 transition-transform">
+                      ${isPlayingThisBeat ? '⏸' : '▶'}
+                    </span>
+                  </button>
+                </div>
+
+                <div class="flex lg:justify-between items-center gap-2 w-full font-mono text-xs">
+                  <span class="px-2 py-1 bg-zinc-950 border border-black rounded-lg text-markerGreen font-bold">
+                    ${beat.bpm} BPM
+                  </span>
+                  <span class="px-2 py-1 bg-zinc-950 border border-black rounded-lg text-zinc-300">
+                    Key: ${beat.musicalKey}
+                  </span>
+                </div>
+              </div>
+
+              <!-- COLUMNA CENTRAL (4 cols): Línea del Beat + Productor Clicable + Fuego Beat + Subir Rap -->
+              <div class="lg:col-span-4 flex flex-col justify-between bg-zinc-900/75 border-2 border-black rounded-xl p-3.5">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-1">
+                    <span class="font-marker text-sm text-markerGreen tracking-wider">BEAT // RAW</span>
+                    <div class="flex items-center gap-2">
+                      <span class="font-mono text-xs text-zinc-400">▶ ${beat.plays}</span>
+                      <button
+                        onclick="toggleLikeBeat('${beat.id}')"
+                        class="comic-btn px-2 py-0.5 rounded-lg font-mono text-xs font-bold cursor-pointer ${beat.likedByMe ? 'bg-fireOrange text-black' : 'bg-zinc-800 text-zinc-200 hover:text-white'}"
+                        title="Dar fuego a este instrumental"
+                      >
+                        🔥 ${beat.likes || 0}
+                      </button>
+                    </div>
+                  </div>
+                  <h3 class="font-extrabold text-xl sm:text-2xl text-white leading-tight">${beat.title}</h3>
+                  <p class="font-mono text-xs text-zinc-400 mt-0.5">
+                    Prod.
+                    <button
+                      type="button"
+                      onclick="openArtistProfileModal('${beat.producer}')"
+                      class="text-markerGreen hover:underline font-bold cursor-pointer"
+                      title="Abrir perfil de ${beat.producer}"
+                    >
+                      ${beat.producer}
+                    </button>
+                  </p>
+                </div>
+
+                <!-- Barra horizontal del Beat -->
+                <div class="my-4">
+                  <div class="flex items-center justify-between font-mono text-[11px] text-zinc-400 mb-1.5">
+                    <span>${isPlayingThisBeat ? 'Sonando instrumental...' : 'Instrumental listo'}</span>
+                    ${isPlayingThisBeat ? `
+                      <span class="flex items-end gap-0.5 h-3">
+                        <span class="w-1 bg-markerGreen eq-bar-1"></span>
+                        <span class="w-1 bg-markerGreen eq-bar-2"></span>
+                        <span class="w-1 bg-markerGreen eq-bar-3"></span>
+                        <span class="w-1 bg-markerGreen eq-bar-4"></span>
+                      </span>
+                    ` : ''}
+                  </div>
+                  <div onclick="playBeat('${beat.id}')" class="w-full h-4 bg-zinc-950 rounded-full border-2 border-black overflow-hidden cursor-pointer relative flex items-center">
+                    <div id="beat-prog-${beat.id}" class="h-full bg-markerGreen transition-all duration-150" style="width: ${progressPct}%"></div>
+                  </div>
+                </div>
+
+                <!-- Botón principal para que el Rapper suba su .m4a o grabe -->
+                <button
+                  onclick="handleAddRapClick('${beat.id}')"
+                  class="comic-btn w-full bg-doomGold hover:bg-yellow-300 text-black font-mono text-xs sm:text-sm font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>🎙️</span>
+                  <span>SUBIR RAP (.M4A / GRABAR MIC)</span>
+                </button>
+              </div>
+
+              <!-- COLUMNA DERECHA (5 cols): "Comments / Raps" stack de barras horizontales -->
+              <div class="lg:col-span-5 flex flex-col bg-zinc-950/85 border-2 border-black rounded-xl p-3">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-2 mb-2.5">
+                  <span class="font-marker text-base text-markerGreen tracking-wide">
+                    RAPS / COMMENTS (${beat.raps.length})
+                  </span>
+                  <span class="font-mono text-[10px] text-zinc-400">Notas de voz sobre este beat</span>
+                </div>
+
+                <div class="raps-scroll space-y-2 max-h-56 overflow-y-auto pr-1">
+                  ${beat.raps.length > 0
+                    ? beat.raps.map(rap => renderRapRowItem(beat.id, rap)).join('')
+                    : `<div class="text-center py-8 font-mono text-xs text-zinc-500">
+                         Todavía no hay tomas vocales.<br>¡Subí tu nota de voz .m4a primero!
+                       </div>`
+                  }
+                </div>
+              </div>
+
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderNewBeatsGrid() {
+      const newBeats = beatsData.filter(b => !b.isTop);
+      const grid = document.getElementById('newBeatsGrid');
+
+      grid.innerHTML = newBeats.map(beat => {
+        const isPlayingThisBeat = activePlayback.type === 'beat' && activePlayback.beatId === beat.id && activePlayback.isPlaying;
+
+        return `
+          <article class="comic-box bg-comicCard rounded-2xl p-3.5 flex items-center gap-3.5">
+            <!-- Cuadro izquierdo (Carátula con Play) igual que en la grilla de 2 cols del boceto -->
+            <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl border-[2.5px] border-black overflow-hidden shrink-0">
+              ${getCoverSVG(beat.coverTheme, beat.title)}
+              <button
+                onclick="playBeat('${beat.id}')"
+                class="absolute inset-0 bg-black/35 hover:bg-black/15 flex items-center justify-center cursor-pointer"
+                aria-label="Play ${beat.title}"
+              >
+                <span class="comic-btn w-9 h-9 rounded-full bg-markerGreen text-black flex items-center justify-center text-sm font-bold">
+                  ${isPlayingThisBeat ? '⏸' : '▶'}
+                </span>
+              </button>
+            </div>
+
+            <!-- Info + Productor clicable + Fuego + Botón "Add Raps / Comments" -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="font-bold text-base sm:text-lg text-white truncate">${beat.title}</h3>
+                <span class="font-mono text-[11px] text-markerGreen font-bold shrink-0">${beat.bpm} BPM</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <p class="font-mono text-xs text-zinc-400 truncate">
+                  Prod.
+                  <button
+                    type="button"
+                    onclick="openArtistProfileModal('${beat.producer}')"
+                    class="text-white hover:text-markerGreen underline font-bold cursor-pointer"
+                  >
+                    ${beat.producer}
+                  </button>
+                  • ${beat.raps.length} raps
+                </p>
+                <button
+                  onclick="toggleLikeBeat('${beat.id}')"
+                  class="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded border border-black shrink-0 cursor-pointer ${beat.likedByMe ? 'bg-fireOrange text-black' : 'bg-zinc-900 text-zinc-300'}"
+                >
+                  🔥 ${beat.likes || 0}
+                </button>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <button
+                  onclick="handleAddRapClick('${beat.id}')"
+                  class="comic-btn bg-markerGreen hover:bg-green-300 text-black font-mono text-xs font-bold px-2.5 py-1.5 rounded-lg cursor-pointer"
+                >
+                  + Add Raps (.m4a)
+                </button>
+                <button
+                  onclick="openBeatDetailModal('${beat.id}')"
+                  class="comic-btn bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-mono text-xs font-bold px-2.5 py-1.5 rounded-lg cursor-pointer"
+                >
+                  Comments (${beat.raps.length})
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openBeatDetailModal(beatId) {
+      const beat = beatsData.find(b => b.id === beatId);
+      if (!beat) return;
+
+      const isPlayingThisBeat = activePlayback.type === 'beat' && activePlayback.beatId === beat.id && activePlayback.isPlaying;
+      const content = document.getElementById('beatDetailContent');
+
+      content.innerHTML = `
+        <div class="flex items-center gap-4 mb-4 pr-8">
+          <div class="w-20 h-20 rounded-xl border-2 border-black overflow-hidden shrink-0">
+            ${getCoverSVG(beat.coverTheme, beat.title)}
+          </div>
+          <div>
+            <span class="font-mono text-xs text-markerGreen font-bold">${beat.bpm} BPM • Key ${beat.musicalKey} • ${beat.formatTag || '.WAV'}</span>
+            <h3 class="font-extrabold text-2xl text-white">${beat.title}</h3>
+            <p class="font-mono text-xs text-zinc-400">
+              Prod.
+              <button
+                type="button"
+                onclick="closeModal('beatDetailModal'); openArtistProfileModal('${beat.producer}')"
+                class="text-markerGreen hover:underline font-bold cursor-pointer"
+              >
+                ${beat.producer}
+              </button>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2.5 mb-5">
+          <button
+            onclick="playBeat('${beat.id}'); openBeatDetailModal('${beat.id}')"
+            class="comic-btn bg-markerGreen text-black font-mono text-xs font-bold px-4 py-2 rounded-xl cursor-pointer"
+          >
+            ${isPlayingThisBeat ? '⏸ Pausar Beat' : '▶ Escuchar Beat'}
+          </button>
+          <button
+            onclick="toggleLikeBeat('${beat.id}')"
+            class="comic-btn ${beat.likedByMe ? 'bg-fireOrange text-black' : 'bg-zinc-800 text-white'} font-mono text-xs font-bold px-3.5 py-2 rounded-xl cursor-pointer"
+          >
+            🔥 Fuego (${beat.likes || 0})
+          </button>
+          <button
+            onclick="handleAddRapClick('${beat.id}')"
+            class="comic-btn bg-doomGold text-black font-mono text-xs font-bold px-4 py-2 rounded-xl cursor-pointer"
+          >
+            🎤 + Subir mi Rap (.m4a / Mic)
+          </button>
+        </div>
+
+        <h4 class="font-marker text-lg text-markerGreen mb-2.5">
+          TOMAS Y COMENTARIOS DE RAPPERS (${beat.raps.length})
+        </h4>
+        <div class="space-y-2.5 max-h-72 overflow-y-auto raps-scroll pr-1">
+          ${beat.raps.length > 0
+            ? beat.raps.map(rap => renderRapRowItem(beat.id, rap)).join('')
+            : `<p class="font-mono text-xs text-zinc-400 bg-zinc-900 border border-black rounded-xl p-4 text-center">
+                 Aún nadie grabó sobre este beat. ¡Estrenalo con una nota de voz desde tu celu!
+               </p>`
+          }
+        </div>
+      `;
+
+      openModal('beatDetailModal');
+    }
+
+    function renderAll() {
+      renderLeaderboards();
+      renderTopBeatsFeed();
+      renderNewBeatsGrid();
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. UTILIDADES DE MODALES Y TOAST
+    // -----------------------------------------------------------------------
+    function openModal(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('hidden');
+      el.classList.add('flex');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      el.classList.add('hidden');
+      el.classList.remove('flex');
+    }
+
+    function openAuthModal() {
+      document.getElementById('regUsernameInput').value = currentUser.aka.replace(/^@/, '');
+      document.getElementById('regCityInput').value = currentUser.city || '';
+      document.getElementById('regCrewInput').value = currentUser.crew || '';
+      document.getElementById('regBioInput').value = currentUser.bio || '';
+      const radios = document.querySelectorAll('input[name="userRole"]');
+      radios.forEach(r => { r.checked = (r.value === currentUser.role); });
+      openModal('authModal');
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3400);
+    }
+
+    // Inicialización al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderUserUI();
+      renderAll();
+    });
+  </script>
+</body>
+</html>
